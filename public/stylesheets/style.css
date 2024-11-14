@@ -38,7 +38,7 @@ a {
   padding: 20px;
   margin: 0;
   height: calc(100vh - 60px); /* Full height minus the header height */
-  flex-basis: 20%;
+  flex-basis: 10%;
 }
 
 .sidebar li {
@@ -55,4 +55,39 @@ a {
   padding: 20px;
   width: 100%; /* Takes the remaining 80% */
   box-sizing: border-box;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  height: 40px;
+  margin-right: 20px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  border-radius: 25px 0 0 25px; /* Rounded corners */
+}
+
+.search-button i {
+  font-size: 16px;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
 }
