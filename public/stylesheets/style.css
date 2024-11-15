@@ -10,7 +10,12 @@ body {
 }
 
 a {
-  color: #00b7ff;
+  text-decoration: none;
+}
+
+a:visited,
+a:active {
+  color: black;
 }
 
 .logo-img {
