@@ -33,17 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get('/api/users', (req, res) => {
-  const { login, password } = req.query;
-  let query = "SELECT * FROM users WHERE (email = " + login + " AND password = " + password + ") OR (username = " + login + " AND password = " + password + ")";
-  db.all(query, (err, rows) => {
-    if (err) {
-      console.error('Error fetching users', err);
-      return res.status(500).send('Internal Server Error');
-    }
-    res.json(rows); // Send users as JSON to the client
-  });
-});
+
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
