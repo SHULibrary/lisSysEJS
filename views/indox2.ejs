@@ -13,6 +13,8 @@
       height: 100vh;
       margin: 0;
       font-family: Arial, sans-serif;
+      background: url("/images/Background.jpg") no-repeat center center fixed;
+      background-size: cover;
     }
 
     .login-box {
@@ -38,7 +40,7 @@
     .login-box input[type="submit"],
     .login-box input[type="password"] {
       width: 80%;
-      padding: 5px;
+      padding: 7px;
       margin: 10px 0;
       border: 1px solid #ddd;
       border-radius: 4px;
@@ -64,11 +66,11 @@
     <img src="/images/LibLogo.png" alt="Library Logo" class="logo-img" />
     <p>Create an Account</p>
     <form action="/login" method="POST">
-    <input type="email" name="emailaddress" placeholder="Email Address" required>
-      <input type="text" name="username" placeholder="Username" required>
-      <input type="password" name="password" placeholder="Password" required>
-      <input type="date" name="DOB" placeholder="Date of Birth" required>
-      <input type="text" name="address" placeholder="Address" required>
+    <input type="email" id= "emailBox" name="emailaddress" placeholder="Email Address" required>
+      <input type="text" id="usernameBox" name="username" placeholder="Username" required>
+      <input type="password" id="passwordBox" name="password" placeholder="Password" required>
+      <input type="date" id="dobBox" name="DOB" placeholder="Date of Birth" required>
+      <input type="text" id="addressBox" name="address" placeholder="Address" required>
       <input type="submit" value="Sign up now">
     </form>
   </div>
