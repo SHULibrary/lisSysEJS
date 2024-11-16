@@ -3,6 +3,8 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var session = require('express-session');
+var hash = require('pbkdf2-password')();
 var sqlite3 = require('sqlite3').verbose();
 
 var indexRouter = require("./routes/index");
@@ -13,16 +15,6 @@ var usersRouter = require("./routes/users");
 
 var app = express();
 
-// view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
-
-// app.use(session({
-//   resave: false, // don't save session if unmodified
-//   saveUninitialized: false, // don't create session until something stored
-//   secret: 'secretTomes'
-// }));
-
 const db = new sqlite3.Database('./data/libData.db', (err) => {
   if (err) {
     console.error('Error connecting to the database:', err.message);
@@ -30,6 +22,10 @@ const db = new sqlite3.Database('./data/libData.db', (err) => {
     console.log('Connected to SQLite database.');
   }
 });
+
+// view engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
 async function getUsers() {
   const query = 'SELECT * FROM users';
@@ -54,6 +50,20 @@ async function getUsers() {
   console.log(users)
 })()
 
+app.use(express.urlencoded())
+app.use(session({
+  resave: false, // don't save session if unmodified
+  saveUninitialized: false, // don't create session until something stored
+  secret: 'ancientTomes'
+}));
+
+hash({ password: 'foobar' }, function (err, pass, salt, hash) {
+  if (err) throw err;
+  // store the salt & hash in the "db"
+  users.tj.salt = salt;
+  users.tj.hash = hash;
+});
+
 app.use(function(req, res, next){
   var err = req.session.error;
   var msg = req.session.success;
@@ -70,8 +80,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
-
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
