@@ -6,8 +6,8 @@ var logger = require("morgan");
 var sqlite3 = require('sqlite3').verbose();
 
 var indexRouter = require("./routes/index");
-var indoxRouter = require("./routes/indox");
-var indox2Router = require("./routes/indox2");
+var indoxRouter = require("./routes/login");
+var indox2Router = require("./routes/signUp");
 var wishlistRouter = require("./routes/wishlist");
 var usersRouter = require("./routes/users");
 
@@ -37,8 +37,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/indox", indoxRouter);
-app.use("/indox2", indox2Router);
+app.use("/login", indoxRouter);
+app.use("/signUp", indox2Router);
 app.use("/wishlist", wishlistRouter);
 
 // catch 404 and forward to error handler

@@ -4,6 +4,6 @@ var router = express.Router();
 /* GET login page. */
 
 router.get('/', function(req, res, next) {
-  res.render('indox', { title: 'Express' });
+  res.render('login', { title: 'Express' });
 });
 module.exports = router;
