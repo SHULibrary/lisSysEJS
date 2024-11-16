@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome to Your Mother</title>
+    <title>Home</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <link
       rel="stylesheet"
@@ -9,7 +9,8 @@
     />
     <div class="header">
       <a href="/">
-      <img src="/images/LibLogo.png" alt="Library Logo" class="logo-img" /></a>
+        <img src="/images/LibLogo.png" alt="Library Logo" class="logo-img"
+      /></a>
       <div class="search-container">
         <input type="text" class="search-input" placeholder="Search..." />
         <button class="search-button">
@@ -20,7 +21,7 @@
   </head>
 
   <body>
-    <h1 class="header-title">Welcome to Your Mother</h1>
+    <h1 class="header-title">Home</h1>
 
     <div class="container">
       <div class="sidebar">
@@ -41,7 +42,20 @@
         </ul>
         <button id="runDB">runDB</button>
       </div>
-      <div class="main-content"></div>
+      <div class="main-content">
+        <div class="recommendation">
+          <h2>Recommended</h2>
+          <div class="recommendation-books">
+            <% recommendations.forEach((book) => { %>
+            <div class="book">
+              <img src="<%= book.image %>" alt="The Psychology Of Money" />
+              <h3><%= book.name %></h3>
+              <p><%= book.author %></p>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
   <script src="/javascripts/databaseAccess.js"></script>
