@@ -34,6 +34,7 @@ a:active {
 .container {
   display: flex;
   height: 100%;
+  align-items: stretch;
 }
 
 .sidebar {
@@ -60,7 +61,7 @@ a:active {
   gap: 1rem;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .search-container {
@@ -118,6 +119,16 @@ a:active {
 
 .book-img {
   overflow: hidden;
+  position: relative;
+}
+
+.book-wishlist {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  background: white;
+  padding: 5px;
+  border-radius: 10px;
 }
 
 .recommendation-books {
@@ -131,6 +142,7 @@ a:active {
 }
 
 .categories {
+  overflow: hidden;
   background-color: white;
   border-radius: 10px;
   padding: 15px;
@@ -138,11 +150,13 @@ a:active {
 
 .categories-buttons {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 10px;
 }
 
 .button {
+  flex: 1;
   width: 100%;
   padding: 0.5rem 1rem;
   background: black;

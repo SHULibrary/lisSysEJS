@@ -7,41 +7,15 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
     />
-    <div class="header">
-      <a href="/">
-        <img src="/images/LibLogo.png" alt="Library Logo" class="logo-img"
-      /></a>
-      <div class="search-container">
-        <input type="text" class="search-input" placeholder="Search..." />
-        <button class="search-button">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
-    </div>
   </head>
 
   <body>
+    <%- include('./partials/header'); %>
     <h1 class="header-title">Home</h1>
 
     <div class="container">
-      <div class="sidebar">
-        <ul>
-          <li>
-            <a href="/index"
-              ><i class="bi bi-house-heart-fill"></i>&nbsp; Home</a
-            >
-          </li>
-          <li>
-            <a href="/wishlist"
-              ><i class="bi bi-star-fill"></i>&nbsp; Wishlist</a
-            >
-          </li>
-          <li><i class="bi bi-file-plus-fill"></i>&nbsp; Reservation</li>
-          <li><i class="bi bi-gear-fill"></i>&nbsp; Settings</li>
-          <li><i class="bi bi-door-open-fill"></i>&nbsp; Log out</li>
-        </ul>
-        <button id="runDB">runDB</button>
-      </div>
+      <%- include('./partials/sidebar'); %>
+
       <div class="main-content">
         <div class="recommendation">
           <h2>Recommended</h2>
@@ -51,6 +25,9 @@
                 <% recommendations.forEach((book) => { %>
                 <div class="book">
                   <div class="book-img">
+                    <div class="book-wishlist">
+                      <i class="bi bi-star-fill" style="color: black"></i>
+                    </div>
                     <img
                       src="<%= book.image %>"
                       alt="The Psychology Of Money"
@@ -80,6 +57,9 @@
             <% recommendations.forEach((book) => { %>
             <div class="book">
               <div class="book-img">
+                <div class="book-wishlist">
+                  <i class="bi bi-star-fill" style="color: black"></i>
+                </div>
                 <img src="<%= book.image %>" alt="The Psychology Of Money" />
               </div>
               <h3><%= book.name %></h3>
@@ -92,4 +72,13 @@
     </div>
   </body>
   <script src="/javascripts/databaseAccess.js"></script>
+  <script>
+    document.querySelectorAll(".book-wishlist").forEach((wishlist) => {
+      wishlist.addEventListener("click", () => {
+        const star = wishlist.querySelector("i");
+        star.style["color"] =
+          star.style["color"] == "black" ? "yellow" : "black";
+      });
+    });
+  </script>
 </html>
