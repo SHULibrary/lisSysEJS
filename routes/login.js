@@ -1,11 +1,13 @@
-const express = require('express');
+var express = require('express');
+var router = express.Router();
+
+/* GET sign in page. */
+
 const sqlite3 = require('sqlite3').verbose();
 const bcrypt = require('bcrypt');
 
-const router = express.Router();
-
 // Path to your SQLite database file
-const db = new sqlite3.Database('./data/database.db', (err) => {
+const db = new sqlite3.Database('./data/libData.db', (err) => {
   if (err) {
     console.error('Error connecting to the database:', err.message);
   } else {
@@ -18,7 +20,6 @@ router.use(express.json());
 
 router.post('/', (req, res) => {
   const { username, password } = req.body;
-
   if (!username || !password) {
     return res.status(400).json({ error: 'Username and password are required' });
   }
@@ -39,7 +40,7 @@ router.post('/', (req, res) => {
     try {
       const isPasswordValid = await bcrypt.compare(password, user.password);
       if (!isPasswordValid) {
-        return res.status(401).json({ error: 'Invalid username or password' });
+        res.redirect('login', { title: 'Express' });
       }
 
       // Successful login
