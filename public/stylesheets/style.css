@@ -27,13 +27,13 @@ a:active {
   color: white;
   background-color: #03045e;
   padding: 15px 20px;
-  width: 100vw;
   box-sizing: border-box;
   font-size: 24px;
 }
 
 .container {
   display: flex;
+  height: 100%;
 }
 
 .sidebar {
@@ -41,8 +41,7 @@ a:active {
   background-color: #cfd0e8;
   padding: 20px;
   margin: 0;
-  height: calc(100vh - 60px);
-  flex-basis: 10%;
+  flex-basis: 20%;
 }
 
 .sidebar li {
@@ -57,8 +56,11 @@ a:active {
 .main-content {
   padding: 20px;
   width: 100%;
-  box-sizing: border-box;
   background-color: #dedfef;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
 }
 
 .search-container {
@@ -92,8 +94,8 @@ a:active {
 .header {
   display: flex;
   justify-content: space-between;
-  width: 100%;
   align-items: center;
+  padding: 15px;
 }
 
 .recommendation {
@@ -103,18 +105,73 @@ a:active {
 }
 
 .book {
-  flex-basis: 13%;
+  overflow: hidden;
+  width: 12rem;
 }
 
 .book img {
-  width: 100%;
-  height: 300px;
   border-radius: 10px;
   object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+
+.book-img {
+  overflow: hidden;
 }
 
 .recommendation-books {
-  gap: 15px;
+  display: table;
   margin-top: 10px;
+}
+
+.recommendation-books > div {
+  gap: 1rem;
   display: flex;
+}
+
+.categories {
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.categories-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 10px;
+}
+
+.button {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background: black;
+  border: 0;
+  color: white;
+  border-radius: 5px;
+}
+
+.categories-books {
+  margin-top: 10px;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 640px) {
+  .categories-books {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .categories-books {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .categories-books {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
