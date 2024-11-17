@@ -33,35 +33,4 @@ async function getItems(table) {
   }
 }
 
-// (async() => {
-//   var users = await getItems("users");
-//   console.log(users)
-//   var books = await getItems("book");
-//   console.log(books)
-//   var discs = await getItems("disc");
-//   console.log(discs)
-//   var other = await getItems("other");
-//   console.log(other)
-// })()
-
-async function getMedia() {
-  return await getItems("media");
-}
-
-async function getUsers() {
-  return await getItems("users");
-}
-
-async function getBooks() {
-  return await getItems("book");
-}
-
-async function getDiscs() {
-  return await getItems("disc");
-}
-
-async function getOthers() {
-  return await getItems("other");
-}
-
-module.exports = { getUsers, getBooks, getDiscs, getOthers, getMedia };
+module.exports = { getItems };

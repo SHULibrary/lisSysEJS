@@ -1,11 +1,11 @@
 var express = require("express");
-const { getBooks, getDiscs, getOthers } = require("../server");
+const { getBooks, getDiscs, getOthers, getItems } = require("../server");
 var router = express.Router();
 
 router.get("/", async function (req, res, next) {
-  var books = await getBooks();
-  var discs = await getDiscs();
-  var others = await getOthers();
+  var books = await getItems("book");
+  var discs = await getDiscs("disc");
+  var others = await getItems("other");
   console.log(books);
   console.log(discs);
   console.log(others);
