@@ -1,107 +1,48 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Home</title>
+    <title>Welcome to Your Mother</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
     />
+    <div class="header">
+      <a href="/">
+      <img src="/images/LibLogo.png" alt="Library Logo" class="logo-img" /></a>
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search..." />
+        <button class="search-button">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
   </head>
 
   <body>
-    <%- include('./partials/header'); %>
-    <h1 class="header-title">Home</h1>
+    <h1 class="header-title">Welcome to Your Mother</h1>
 
     <div class="container">
-      <%- include('./partials/sidebar'); %>
-
-      <div class="main-content">
-        <div class="recommendation">
-          <h2>Recommended</h2>
-          <div style="overflow-x: scroll">
-            <div class="recommendation-books">
-              <div>
-                <% recommendations.forEach((book) => { %>
-                <div class="book">
-                  <div class="book-img">
-                    <div class="book-wishlist" data-id="<%= book.name %>">
-                      <i class="bi bi-star-fill" style="color: black"></i>
-                    </div>
-                    <img
-                      src="<%= book.image %>"
-                      alt="The Psychology Of Money"
-                    />
-                  </div>
-                  <h3><%= book.name %></h3>
-                  <p><%= book.author %></p>
-                </div>
-                <% }); %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="categories">
-          <h2>Categories</h2>
-          <div class="categories-buttons">
-            <button class="button">All</button>
-            <button class="button">Sci-Fi</button>
-            <button class="button">Fantasy</button>
-            <button class="button">Drama</button>
-            <button class="button">Romance</button>
-            <button class="button">Business</button>
-            <button class="button">Education</button>
-            <button class="button">Geography</button>
-          </div>
-          <div class="categories-books">
-            <% recommendations.forEach((book) => { %>
-            <div class="book">
-              <div class="book-img">
-                <div class="book-wishlist">
-                  <i class="bi bi-star-fill" style="color: black"></i>
-                </div>
-                <img src="<%= book.image %>" alt="The Psychology Of Money" />
-              </div>
-              <h3><%= book.name %></h3>
-              <p><%= book.author %></p>
-            </div>
-            <% }); %>
-          </div>
-          <button>hello</button>
-        </div>
+      <div class="sidebar">
+        <ul>
+          <li>
+            <a href="/index"
+              ><i class="bi bi-house-heart-fill"></i>&nbsp; Home</a
+            >
+          </li>
+          <li>
+            <a href="/wishlist"
+              ><i class="bi bi-star-fill"></i>&nbsp; Wishlist</a
+            >
+          </li>
+          <li><i class="bi bi-file-plus-fill"></i>&nbsp; Reservation</li>
+          <li><i class="bi bi-gear-fill"></i>&nbsp; Settings</li>
+          <li><i class="bi bi-door-open-fill"></i>&nbsp; Log out</li>
+        </ul>
+        <button id="runDB">runDB</button>
       </div>
+      <div class="main-content"></div>
     </div>
   </body>
   <script src="/javascripts/databaseAccess.js"></script>
-  <script>
-    const getWishlist = (element) => {
-      const data =
-        (localStorage.getItem("wishlist") &&
-          JSON.parse(localStorage.getItem("wishlist"))) ||
-        {};
-
-      return data[element.dataset.id] || false;
-    };
-
-    const setWishlist = (element, isWishlisted) => {
-      const data =
-        (localStorage.getItem("wishlist") &&
-          JSON.parse(localStorage.getItem("wishlist"))) ||
-        {};
-
-      data[element.dataset.id] = isWishlisted;
-      localStorage.setItem("wishlist", JSON.stringify(data));
-    };
-
-    document.querySelectorAll(".book-wishlist").forEach((element) => {
-      const star = element.querySelector("i");
-      star.style["color"] = getWishlist(element) ? "yellow" : "black";
-
-      element.addEventListener("click", () => {
-        const isWishlisted = !getWishlist(element);
-        star.style["color"] = isWishlisted ? "yellow" : "black";
-        setWishlist(element, isWishlisted);
-      });
-    });
-  </script>
 </html>
