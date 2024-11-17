@@ -2,8 +2,8 @@ var express = require("express");
 const { getUsers, getBooks } = require("../server");
 var router = express.Router();
 
-router.get("/", function (req, res, next) {
-  var books = fetchBooks();
+router.get("/", async function (req, res, next) {
+  var books = await getBooks();
   console.log(books);
   const recommendations = [
     /*{
@@ -53,8 +53,5 @@ router.get("/", function (req, res, next) {
   });
 });
 
-async function fetchBooks() {
-  return await getBooks();
-}
 
 module.exports = router;
