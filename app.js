@@ -3,8 +3,8 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-var session = require('express-session');
-var hash = require('pbkdf2-password')();
+//var session = require('express-session');
+//var hash = require('pbkdf2-password')();
 var sqlite3 = require('sqlite3').verbose();
 
 var indexRouter = require("./routes/index");
@@ -123,30 +123,30 @@ async function getOther() {
   console.log(users)
 })()
 
-app.use(express.urlencoded())
-app.use(session({
-  resave: false, // don't save session if unmodified
-  saveUninitialized: false, // don't create session until something stored
-  secret: 'ancientTomes'
-}));
+// app.use(express.urlencoded())
+// app.use(session({
+//   resave: false, // don't save session if unmodified
+//   saveUninitialized: false, // don't create session until something stored
+//   secret: 'ancientTomes'
+// }));
 
-hash({ password: 'foobar' }, function (err, pass, salt, hash) {
-  if (err) throw err;
-  // store the salt & hash in the "db"
-  users.tj.salt = salt;
-  users.tj.hash = hash;
-});
+// hash({ password: 'foobar' }, function (err, pass, salt, hash) {
+//   if (err) throw err;
+//   // store the salt & hash in the "db"
+//   users.tj.salt = salt;
+//   users.tj.hash = hash;
+// });
 
-app.use(function(req, res, next){
-  var err = req.session.error;
-  var msg = req.session.success;
-  delete req.session.error;
-  delete req.session.success;
-  res.locals.message = '';
-  if (err) res.locals.message = '<p class="msg error">' + err + '</p>';
-  if (msg) res.locals.message = '<p class="msg success">' + msg + '</p>';
-  next();
-});
+// app.use(function(req, res, next){
+//   var err = req.session.error;
+//   var msg = req.session.success;
+//   delete req.session.error;
+//   delete req.session.success;
+//   res.locals.message = '';
+//   if (err) res.locals.message = '<p class="msg error">' + err + '</p>';
+//   if (msg) res.locals.message = '<p class="msg success">' + msg + '</p>';
+//   next();
+// });
 
 app.use(logger("dev"));
 app.use(express.json());
