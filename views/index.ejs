@@ -23,23 +23,61 @@
     <h1 class="header-title">Welcome to Your Mother</h1>
 
     <div class="container">
-      <div class="sidebar">
-        <ul>
-          <li>
-            <a href="/index"
-              ><i class="bi bi-house-heart-fill"></i>&nbsp; Home</a
-            >
-          </li>
-          <li>
-            <a href="/wishlist"
-              ><i class="bi bi-star-fill"></i>&nbsp; Wishlist</a
-            >
-          </li>
-          <li><i class="bi bi-file-plus-fill"></i>&nbsp; Reservation</li>
-          <li><i class="bi bi-gear-fill"></i>&nbsp; Settings</li>
-          <li><i class="bi bi-door-open-fill"></i>&nbsp; Log out</li>
-        </ul>
-        <button id="runDB">runDB</button>
+      <%- include('./partials/sidebar'); %>
+
+      <div class="main-content">
+        <div class="recommendation">
+          <h2>Recommended</h2>
+          <div style="overflow-x: scroll">
+            <div class="recommendation-books">
+              <div>
+                <% recommendations.forEach((book) => { %>
+                <div class="book">
+                  <div class="book-img">
+                    <div class="book-wishlist" data-id="<%= book.name %>">
+                      <i class="bi bi-star-fill" style="color: black"></i>
+                    </div>
+                    <img
+                      src="<%= book.image %>"
+                      alt="The Psychology Of Money"
+                    />
+                  </div>
+                  <h3><%= book.name %></h3>
+                  <p><%= book.author %></p>
+                </div>
+                <% }); %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="categories">
+          <h2>Categories</h2>
+          <div class="categories-buttons">
+            <button class="button">All</button>
+            <button class="button">Sci-Fi</button>
+            <button class="button">Fantasy</button>
+            <button class="button">Drama</button>
+            <button class="button">Romance</button>
+            <button class="button">Business</button>
+            <button class="button">Education</button>
+            <button class="button">Geography</button>
+          </div>
+          <div class="categories-books">
+            <% books.forEach((book) => { %>
+            <div class="book">
+              <div class="book-img">
+                <div class="book-wishlist">
+                  <i class="bi bi-star-fill" style="color: black"></i>
+                </div>
+                <img src="<%= book.image %>" alt="The Psychology Of Money" />
+              </div>
+              <h3><%= book.name %></h3>
+              <p><%= book.author %></p>
+            </div>
+            <% }); %>
+          </div>
+          <button>hello</button>
+        </div>
       </div>
       <div class="main-content"></div>
     </div>
