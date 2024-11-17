@@ -12,6 +12,10 @@ var indoxRouter = require("./routes/login");
 var indox2Router = require("./routes/signUp");
 var wishlistRouter = require("./routes/wishlist");
 var usersRouter = require("./routes/users");
+export var users;
+export var books;
+export var discs;
+export var other;
 
 var app = express();
 
@@ -45,8 +49,77 @@ async function getUsers() {
   }
 }
 
+async function getBooks() {
+  const query = 'SELECT * FROM books';
+  try {
+    return new Promise((resolve, reject) => {
+      db.all(query, [], (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+  } catch (error) {
+    console.error('Error fetching books:', error.message);
+    throw error;
+  }
+}
+
+async function getDiscs() {
+  const query = 'SELECT * FROM discs';
+  try {
+    return new Promise((resolve, reject) => {
+      db.all(query, [], (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+  } catch (error) {
+    console.error('Error fetching discs:', error.message);
+    throw error;
+  }
+}
+
+async function getOther() {
+  const query = 'SELECT * FROM other';
+  try {
+    return new Promise((resolve, reject) => {
+      db.all(query, [], (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+  } catch (error) {
+    console.error('Error fetching other:', error.message);
+    throw error;
+  }
+}
+
 (async() => {
-  var users = await getUsers()
+  users = await getUsers()
+  console.log(users)
+})()
+
+(async() => {
+  users = await getBooks()
+  console.log(users)
+})()
+
+(async() => {
+  users = await getDiscs()
+  console.log(users)
+})()
+
+(async() => {
+  users = await getOther()
   console.log(users)
 })()
 
