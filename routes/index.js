@@ -1,10 +1,14 @@
 var express = require("express");
-const { getUsers, getBooks } = require("../server");
+const { getBooks, getDiscs, getOthers } = require("../server");
 var router = express.Router();
 
 router.get("/", async function (req, res, next) {
   var books = await getBooks();
+  var discs = await getDiscs();
+  var others = await getOthers();
   console.log(books);
+  console.log(discs);
+  console.log(others);
   const recommendations = [
     /*{
       name: "The Psychology Of Money",
