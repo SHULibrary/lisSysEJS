@@ -1,8 +1,10 @@
-import { users } from "app.js";
 var express = require("express");
+const { getUsers, getBooks } = require("../server");
 var router = express.Router();
 
 router.get("/", function (req, res, next) {
+  var books = fetchBooks();
+  console.log(books);
   const recommendations = [
     /*{
       name: "The Psychology Of Money",
@@ -50,5 +52,9 @@ router.get("/", function (req, res, next) {
     recommendations,
   });
 });
+
+async function fetchBooks() {
+  return await getBooks();
+}
 
 module.exports = router;
