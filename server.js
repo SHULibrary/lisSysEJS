@@ -3,20 +3,20 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-var sqlite3 = require('sqlite3').verbose();
+var sqlite3 = require("sqlite3").verbose();
 
 var app = express();
 
-const db = new sqlite3.Database('./data/libData.db', (err) => {
+const db = new sqlite3.Database("./data/libData.db", (err) => {
   if (err) {
-    console.error('Error connecting to the database:', err.message);
+    console.error("Error connecting to the database:", err.message);
   } else {
-    console.log('Connected to SQLite database.');
+    console.log("Connected to SQLite database.");
   }
 });
 
 async function getItems(table) {
-  const query = 'SELECT * FROM ' + table;
+  const query = "SELECT * FROM " + table;
   try {
     return new Promise((resolve, reject) => {
       db.all(query, [], (err, rows) => {
@@ -28,7 +28,7 @@ async function getItems(table) {
       });
     });
   } catch (error) {
-    console.error('Error fetching :' + table, error.message);
+    console.error("Error fetching :" + table, error.message);
     throw error;
   }
 }
@@ -53,7 +53,22 @@ async function getUsers() {
 }
 
 async function getBooks() {
-  return await getItems("book");
+  const query = "SELECT * FROM book INNER JOIN media ON book.id = media.id";
+
+  try {
+    return new Promise((resolve, reject) => {
+      db.all(query, [], (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+  } catch (error) {
+    console.error("Error fetching :" + table, error.message);
+    throw error;
+  }
 }
 
 async function getDiscs() {
