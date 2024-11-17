@@ -1,7 +1,8 @@
 const { getItems } = require("../../server");
 
-const submit_button = document.getElementById('sumbit-button').addEventListener('click', async function () {
+const submit_button = document.getElementById('loginForm').addEventListener('submit', async function (event) {
     // Get input values
+    event.preventDefault();
     var users = await getItems("users");
     const username = document.getElementById('username-box').value.trim();
     const password = document.getElementById('password-box').value.trim();
@@ -12,6 +13,7 @@ const submit_button = document.getElementById('sumbit-button').addEventListener(
             throw {};           
         }
     });
+    console.log(currentUser);
     if (currentUser != null) {
         //route to index
         window.location.href = '/index';
@@ -19,5 +21,6 @@ const submit_button = document.getElementById('sumbit-button').addEventListener(
     else {
         messageElement.textContent = 'Invalid username or password.';
         messageElement.style.color = 'red';
+        window.location.href = '/login';
       }
     });
