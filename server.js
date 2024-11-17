@@ -44,6 +44,9 @@ async function getItems(table) {
 //   console.log(other)
 // })()
 
+async function getMedia() {
+  return await getItems("media");
+}
 
 async function getUsers() {
   return await getItems("users");
@@ -61,4 +64,4 @@ async function getOthers() {
   return await getItems("other");
 }
 
-module.exports = { getUsers, getBooks, getDiscs, getOthers };
+module.exports = { getUsers, getBooks, getDiscs, getOthers, getMedia };
