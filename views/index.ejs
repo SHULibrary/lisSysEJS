@@ -25,7 +25,7 @@
                 <% recommendations.forEach((book) => { %>
                 <div class="book">
                   <div class="book-img">
-                    <div class="book-wishlist">
+                    <div class="book-wishlist" data-id="<%= book.name %>">
                       <i class="bi bi-star-fill" style="color: black"></i>
                     </div>
                     <img
@@ -74,11 +74,33 @@
   </body>
   <script src="/javascripts/databaseAccess.js"></script>
   <script>
-    document.querySelectorAll(".book-wishlist").forEach((wishlist) => {
-      wishlist.addEventListener("click", () => {
-        const star = wishlist.querySelector("i");
-        star.style["color"] =
-          star.style["color"] == "black" ? "yellow" : "black";
+    const getWishlist = (element) => {
+      const data =
+        (localStorage.getItem("wishlist") &&
+          JSON.parse(localStorage.getItem("wishlist"))) ||
+        {};
+
+      return data[element.dataset.id] || false;
+    };
+
+    const setWishlist = (element, isWishlisted) => {
+      const data =
+        (localStorage.getItem("wishlist") &&
+          JSON.parse(localStorage.getItem("wishlist"))) ||
+        {};
+
+      data[element.dataset.id] = isWishlisted;
+      localStorage.setItem("wishlist", JSON.stringify(data));
+    };
+
+    document.querySelectorAll(".book-wishlist").forEach((element) => {
+      const star = element.querySelector("i");
+      star.style["color"] = getWishlist(element) ? "yellow" : "black";
+
+      element.addEventListener("click", () => {
+        const isWishlisted = !getWishlist(element);
+        star.style["color"] = isWishlisted ? "yellow" : "black";
+        setWishlist(element, isWishlisted);
       });
     });
   </script>
