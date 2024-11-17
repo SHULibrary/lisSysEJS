@@ -1,8 +1,9 @@
-const { getItems } = require("../../server");
+const { getItems, test } = require("../../server");
 
-const submit_button = document.getElementById('loginForm').addEventListener('submit', async function (event) {
+const loginForm = document.getElementById('loginForm').addEventListener('submit', async function (event) {
     // Get input values
     event.preventDefault();
+    test();
     var users = await getItems("users");
     const username = document.getElementById('username-box').value.trim();
     const password = document.getElementById('password-box').value.trim();

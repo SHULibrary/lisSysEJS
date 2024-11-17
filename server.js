@@ -1,8 +1,4 @@
-var createError = require("http-errors");
 var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
 var sqlite3 = require("sqlite3").verbose();
 
 var app = express();
@@ -15,7 +11,7 @@ const db = new sqlite3.Database("./data/libData.db", (err) => {
   }
 });
 
-async function getItems(table) {
+export async function getItems(table) {
   const query = "SELECT * FROM " + table;
   try {
     return new Promise((resolve, reject) => {
@@ -52,4 +48,8 @@ async function getBooks() {
   }
 }
 
-module.exports = { getItems, getBooks };
+function test() {
+  console.log("hi here");
+}
+
+module.exports = { getItems, getBooks, test };

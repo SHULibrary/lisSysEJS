@@ -13,38 +13,11 @@ var indox2Router = require("./routes/signUp");
 var wishlistRouter = require("./routes/wishlist");
 var usersRouter = require("./routes/users");
 
-
 var app = express();
-
-const db = new sqlite3.Database('./data/libData.db', (err) => {
-  if (err) {
-    console.error('Error connecting to the database:', err.message);
-  } else {
-    console.log('Connected to SQLite database.');
-  }
-});
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-
-async function getItems(table) {
-  const query = 'SELECT * FROM ' + table;
-  try {
-    return new Promise((resolve, reject) => {
-      db.all(query, [], (err, rows) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(rows);
-        }
-      });
-    });
-  } catch (error) {
-    console.error('Error fetching :' + table, error.message);
-    throw error;
-  }
-}
 
 // (async() => {
 //   var users = await getItems("users");
