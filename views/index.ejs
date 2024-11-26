@@ -9,7 +9,8 @@
     />
     <div class="header">
       <a href="/">
-      <img src="/images/LibLogo.png" alt="Library Logo" class="logo-img" /></a>
+        <img src="/images/LibLogo.png" alt="Library Logo" class="logo-img"
+      /></a>
       <div class="search-container">
         <input type="text" class="search-input" placeholder="Search..." />
         <button class="search-button">
@@ -34,8 +35,11 @@
                 <% recommendations.forEach((book) => { %>
                 <div class="book">
                   <div class="book-img">
-                    <div class="book-wishlist" data-id="<%= book.name %>">
-                      <i class="bi bi-star-fill" style="color: black"></i>
+                    <div class="book-wishlist" data-id="<%= book.id %>">
+                      <i
+                        class="bi bi-star-fill"
+                        style="color: <%= book.wishlisted ? 'yellow' : 'black' %>"
+                      ></i>
                     </div>
                     <img
                       src="<%= book.image %>"
@@ -66,7 +70,7 @@
             <% books.forEach((book) => { %>
             <div class="book">
               <div class="book-img">
-                <div class="book-wishlist">
+                <div class="book-wishlist" data-id="<%= book.id %>">
                   <i class="bi bi-star-fill" style="color: black"></i>
                 </div>
                 <img src="<%= book.image %>" alt="The Psychology Of Money" />
@@ -83,4 +87,25 @@
     </div>
   </body>
   <script src="/javascripts/databaseAccess.js"></script>
+  <script>
+    document.querySelectorAll(".book-wishlist").forEach((element) => {
+      const star = element.querySelector("i");
+      //star.style["color"] = getWishlist(element) ? "yellow" : "black";
+
+      element.addEventListener("click", async () => {
+        const request = await fetch("/wishlist", {
+          method: "POST",
+          body: JSON.stringify({
+            mediaId: element.dataset.id,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        const json = await request.json();
+        star.style["color"] = json.success ? "yellow" : "black";
+      });
+    });
+  </script>
 </html>
