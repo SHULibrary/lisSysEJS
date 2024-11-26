@@ -1,9 +1,24 @@
 var express = require("express");
+const { getWishlist, wishlistMedia } = require("../server");
 var router = express.Router();
 
-/* GET sign in page. */
+const USER_ID = 3; /* TODO: fetch authorized user for the id */
 
-router.get("/", function (req, res, next) {
-  res.render("wishlist", { title: "Express" });
+/* GET sign in page. */
+router.get("/", async function (req, res, next) {
+  const books = await getWishlist(USER_ID);
+  res.render("wishlist", { books });
 });
+
+router.post("/", async function (req, res, next) {
+  const { mediaId } = req.body;
+
+  try {
+    const success = await wishlistMedia(USER_ID, mediaId);
+    res.send({ success });
+  } catch {
+    res.send({ success: false });
+  }
+});
+
 module.exports = router;
