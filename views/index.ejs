@@ -25,8 +25,11 @@
                 <% recommendations.forEach((book) => { %>
                 <div class="book">
                   <div class="book-img">
-                    <div class="book-wishlist" data-id="<%= book.name %>">
-                      <i class="bi bi-star-fill" style="color: black"></i>
+                    <div class="book-wishlist" data-id="<%= book.id %>">
+                      <i
+                        class="bi bi-star-fill"
+                        style="color: <%= book.wishlisted ? 'yellow' : 'black' %>"
+                      ></i>
                     </div>
                     <img
                       src="<%= book.image %>"
@@ -57,7 +60,7 @@
             <% books.forEach((book) => { %>
             <div class="book">
               <div class="book-img">
-                <div class="book-wishlist">
+                <div class="book-wishlist" data-id="<%= book.id %>">
                   <i class="bi bi-star-fill" style="color: black"></i>
                 </div>
                 <img src="<%= book.image %>" alt="The Psychology Of Money" />
@@ -74,33 +77,23 @@
   </body>
   <script src="/javascripts/databaseAccess.js"></script>
   <script>
-    const getWishlist = (element) => {
-      const data =
-        (localStorage.getItem("wishlist") &&
-          JSON.parse(localStorage.getItem("wishlist"))) ||
-        {};
-
-      return data[element.dataset.id] || false;
-    };
-
-    const setWishlist = (element, isWishlisted) => {
-      const data =
-        (localStorage.getItem("wishlist") &&
-          JSON.parse(localStorage.getItem("wishlist"))) ||
-        {};
-
-      data[element.dataset.id] = isWishlisted;
-      localStorage.setItem("wishlist", JSON.stringify(data));
-    };
-
     document.querySelectorAll(".book-wishlist").forEach((element) => {
       const star = element.querySelector("i");
-      star.style["color"] = getWishlist(element) ? "yellow" : "black";
+      //star.style["color"] = getWishlist(element) ? "yellow" : "black";
 
-      element.addEventListener("click", () => {
-        const isWishlisted = !getWishlist(element);
-        star.style["color"] = isWishlisted ? "yellow" : "black";
-        setWishlist(element, isWishlisted);
+      element.addEventListener("click", async () => {
+        const request = await fetch("/wishlist", {
+          method: "POST",
+          body: JSON.stringify({
+            mediaId: element.dataset.id,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        const json = await request.json();
+        star.style["color"] = json.success ? "yellow" : "black";
       });
     });
   </script>
