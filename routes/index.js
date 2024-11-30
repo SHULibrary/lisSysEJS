@@ -1,6 +1,6 @@
 var express = require("express");
-const { getBooks } = require("../server");
 var router = express.Router();
+var { getBooks } = require("../server")
 
 const USER_ID = 3;
 
