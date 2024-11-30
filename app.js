@@ -13,6 +13,7 @@ var indox2Router = require("./routes/signUp");
 var wishlistRouter = require("./routes/wishlist");
 var usersRouter = require("./routes/users");
 var searchRouter = require("./routes/search");
+var mediaRouter = require("./routes/media");
 
 var app = express();
 
@@ -68,6 +69,7 @@ app.use("/login", indoxRouter);
 app.use("/signUp", indox2Router);
 app.use("/wishlist", wishlistRouter);
 app.use("/search", searchRouter);
+app.use("/media", mediaRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

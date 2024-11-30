@@ -153,4 +153,60 @@ async function wishlistMedia(userId, mediaId) {
   return !(exists.length > 0);
 }
 
-module.exports = { getItems, getBooks, getWishlist, wishlistMedia };
+async function authUser(username, password) {
+  const query =
+    "SELECT * FROM users WHERE username = ? AND password = ?";
+    try {
+      return new Promise((resolve, reject) => {
+        conn.query(query, [username, password], function (error, results, fields) {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(results);
+          }
+        })
+      });
+    } catch (error) {
+      console.error("Error fetching :" + table, error.message);
+      throw error;
+    }
+}
+
+async function createUser(name, email, username, password, dob, phone) {
+  const query =
+    "INSERT INTO users (name, email, username, password, DOB, phone) VALUES (?, ?, ?, ?, ?, ?)";
+    try {
+      return new Promise((resolve, reject) => {
+        conn.query(query, [name, email, username, password, dob, phone], function (error, results, fields) {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(results);
+          }
+        })
+      });
+    } catch (error) {
+      console.error("Error fetching :" + table, error.message);
+      throw error;
+    }
+}
+async function getBook(id) {
+  const query =
+    "SELECT * FROM media WHERE id = ?";
+    try {
+      return new Promise((resolve, reject) => {
+        conn.query(query, [id], function (error, results, fields) {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(results);
+          }
+        })
+      });
+    } catch (error) {
+      console.error("Error fetching :" + table, error.message);
+      throw error;
+    }
+}
+
+module.exports = { getItems, getBooks, getWishlist, wishlistMedia, authUser, createUser, getBook };
