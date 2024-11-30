@@ -29,8 +29,8 @@ async function getItems(table) {
   }
 }
 
-async function getBooks(userId) {
-  const query = `
+async function getBooks(userId, search) {
+  let query = `
     SELECT 
       book.*,
       media.*,
@@ -43,9 +43,16 @@ async function getBooks(userId) {
     LEFT JOIN wishlist ON media.id = wishlist.mediaID AND wishlist.userID = ?
   `;
 
+  const args = [userId];
+  if (search) {
+    args.push(`%${search}%`);
+    args.push(`%${search}%`);
+    query += "WHERE media.name LIKE ? OR book.author LIKE ?";
+  }
+
   try {
     return new Promise((resolve, reject) => {
-      db.all(query, [userId], (err, rows) => {
+      db.all(query, args, (err, rows) => {
         if (err) {
           reject(err);
         } else {
