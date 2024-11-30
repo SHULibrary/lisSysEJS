@@ -12,7 +12,6 @@ router.get("/", async function (req, res, next) {
 
 router.post("/", async function (req, res, next) {
   const { mediaId } = req.body;
-
   try {
     const success = await ListMedia("wishlist", USER_ID, mediaId);
     res.send({ success });
