@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reservations</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+  </head>
+
+  <body>
+    <%- include('./partials/header'); %>
+    <h1 class="header-title">Reservations</h1>
+
+    <div class="container">
+      <%- include('./partials/sidebar'); %>
+      <div class="main-content">
+        <div class="categories-books">
+          <% books.forEach((book) => { %>
+          <div class="book">
+            <div class="book-img">
+              <div class="book-wishlist" data-id="<%= book.id %>">
+                <i class="bi bi-star-fill" style="color: black"></i>
+              </div>
+              <img src="<%= book.image %>" alt="The Psychology Of Money" />
+            </div>
+            <h3><%= book.name %></h3>
+            <p><%= book.author %></p>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    document.querySelectorAll(".book-wishlist").forEach((element) => {
+      const star = element.querySelector("i");
+      star.style["color"] = "yellow";
+
+      element.addEventListener("click", async () => {
+        const request = await fetch("/wishlist", {
+          method: "POST",
+          body: JSON.stringify({
+            mediaId: element.dataset.id,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        const json = await request.json();
+        if (!json.success) {
+          element.parentElement.parentElement.remove();
+        }
+      });
+    });
+  </script>
+</html>
