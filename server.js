@@ -11,7 +11,7 @@ const db = new sqlite3.Database("./data/libData.db", (err) => {
   }
 });
 
-export async function getItems(table) {
+async function getItems(table) {
   const query = "SELECT * FROM " + table;
   try {
     return new Promise((resolve, reject) => {

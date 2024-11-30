@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+var { getBooks } = require("../server")
 
 router.get("/", async function (req, res, next) {
   const books = await getBooks();
