@@ -5,13 +5,14 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 //var session = require('express-session');
 //var hash = require('pbkdf2-password')();
-var sqlite3 = require('sqlite3').verbose();
+var sqlite3 = require("sqlite3").verbose();
 
 var indexRouter = require("./routes/index");
 var indoxRouter = require("./routes/login");
 var indox2Router = require("./routes/signUp");
 var wishlistRouter = require("./routes/wishlist");
 var usersRouter = require("./routes/users");
+var searchRouter = require("./routes/search");
 
 var app = express();
 
@@ -66,6 +67,7 @@ app.use("/users", usersRouter);
 app.use("/login", indoxRouter);
 app.use("/signUp", indox2Router);
 app.use("/wishlist", wishlistRouter);
+app.use("/search", searchRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

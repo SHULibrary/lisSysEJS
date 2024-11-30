@@ -35,54 +35,14 @@
       <%- include('./partials/sidebar'); %>
 
       <div class="main-content">
-        <div class="recommendation">
-          <h2>Recommended</h2>
-          <div style="overflow-x: scroll">
-            <div class="recommendation-books">
-              <div>
-                <% recommendations.forEach((book) => { %>
-                <div class="book">
-                  <div class="book-img">
-                    <div class="book-wishlist" data-id="<%= book.id %>">
-                      <i
-                        class="bi bi-star-fill"
-                        style="color: <%= book.wishlisted ? 'yellow' : 'black' %>"
-                      ></i>
-                    </div>
-                    <img
-                      src="<%= book.image %>"
-                      alt="The Psychology Of Money"
-                    />
-                  </div>
-                  <h3><%= book.name %></h3>
-                  <p><%= book.author %></p>
-                </div>
-                <% }); %>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="categories">
-          <h2>Categories</h2>
-          <div class="categories-buttons">
-            <button class="button">All</button>
-            <button class="button">Sci-Fi</button>
-            <button class="button">Fantasy</button>
-            <button class="button">Drama</button>
-            <button class="button">Romance</button>
-            <button class="button">Business</button>
-            <button class="button">Education</button>
-            <button class="button">Geography</button>
-          </div>
+          <h2>Results</h2>
           <div class="categories-books">
             <% books.forEach((book) => { %>
             <div class="book">
               <div class="book-img">
                 <div class="book-wishlist" data-id="<%= book.id %>">
-                  <i
-                    class="bi bi-star-fill"
-                    style="color: <%= book.wishlisted ? 'yellow' : 'black' %>"
-                  ></i>
+                  <i class="bi bi-star-fill" style="color: black"></i>
                 </div>
                 <img src="<%= book.image %>" alt="The Psychology Of Money" />
               </div>
