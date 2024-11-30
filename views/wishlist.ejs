@@ -36,7 +36,7 @@
   <script>
     document.querySelectorAll(".book-wishlist").forEach((element) => {
       const star = element.querySelector("i");
-      star.style["color"] = "yellow";
+      star.style["color"] = "gold";
 
       element.addEventListener("click", async () => {
         const request = await fetch("/wishlist", {
@@ -48,7 +48,7 @@
             "Content-Type": "application/json",
           },
         });
-
+        
         const json = await request.json();
         if (!json.success) {
           element.parentElement.parentElement.remove();

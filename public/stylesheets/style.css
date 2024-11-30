@@ -108,6 +108,7 @@ a:active {
 .book {
   overflow: hidden;
   width: 12rem;
+  cursor: pointer;
 }
 
 .book img {
