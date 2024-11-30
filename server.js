@@ -232,4 +232,4 @@ async function editMedia(name,description,author,mediaID) {
     }
 }
 
-module.exports = { getItems, getBooks, getWishlist, wishlistMedia, authUser, createUser, getBook, editMedia };
+module.exports = { getItems, getBooks, getList, ListMedia, authUser, createUser, getBook, editMedia };
