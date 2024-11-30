@@ -210,4 +210,4 @@ async function getBook(id) {
     }
 }
 
-module.exports = { getItems, getBooks, getWishlist, wishlistMedia, authUser, createUser, getBook };
+module.exports = { getItems, getBooks, getList, ListMedia, authUser, createUser, getBook };
