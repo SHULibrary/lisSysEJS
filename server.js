@@ -104,9 +104,9 @@ async function getBooks(userId, search) {
   }
 }
 
-async function getWishlist(userId) {
+async function getList(userId, list) {
   const query =
-    "SELECT * FROM wishlist INNER JOIN media ON wishlist.media_id = media.id";
+    "SELECT * FROM " + list + " INNER JOIN media ON " + list + ".media_id = media.id";
     try {
       return new Promise((resolve, reject) => {
         conn.query(query, [userId], function (error, results, fields) {
@@ -123,8 +123,8 @@ async function getWishlist(userId) {
     }
 }
 
-async function isWishlisted(userId, mediaId) {
-  const query = "SELECT * FROM wishlist WHERE user_id = ? AND media_id = ?";
+async function isListed(list, userId, mediaId) {
+  const query = "SELECT * FROM " + list + " WHERE user_id = ? AND media_id = ?";
   try {
     return new Promise((resolve, reject) => {
       conn.query(query, [userId, mediaId],function (error, results, fields) {
@@ -141,12 +141,13 @@ async function isWishlisted(userId, mediaId) {
   }
 }
 
-async function wishlistMedia(userId, mediaId) {
-  let query = "INSERT INTO wishlist (media_id, user_id) VALUES (?, ?)";
-  let exists = await isWishlisted(userId, mediaId);
+async function ListMedia(list, userId, mediaId) {
+  let query = "INSERT INTO " + list + " (media_id, user_id) VALUES (?, ?)";
+  let exists = await isListed(list, userId, mediaId);
+  console.log(exists);
 
   if (exists.length > 0) {
-    query = "DELETE FROM wishlist WHERE media_id = ? AND user_id = ?";
+    query = "DELETE FROM " + list + " WHERE media_id = ? AND user_id = ?";
   }
 
   conn.query(query, [mediaId, userId]);
