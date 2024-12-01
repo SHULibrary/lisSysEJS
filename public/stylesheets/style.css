@@ -176,6 +176,11 @@ a:active {
   gap: 1.5rem;
   grid-template-columns: repeat(1, 1fr);
 }
+
+.media-items {
+  text-align: left;
+}
+
 #book-container {
 background-color: #fff;
 padding: 20px;
@@ -218,6 +223,47 @@ padding: 0;
 font-size: 14px;
 color: #444;
 margin-bottom: 5px;
+}
+
+#media-page-cover {
+  float: left;
+  width: 30%;
+  height: auto;
+  margin: 20px 0;
+  border-radius: 8px;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 1%;
+}
+
+#media-page-list {
+  list-style-type: none
+}
+
+#media-buttons {
+  text-align: right;
+  padding-right: 5%;
+}
+
+button {
+background-color: #007bff;
+color: #fff;
+border: none;
+padding: 10px 15px;
+border-radius: 5px;
+cursor: pointer;
+}
+
+button:hover {
+background-color: #0056b3;
+}
+
+textarea {
+font-size: 16px;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+resize: vertical;
 }
 
 @media (min-width: 640px) {
