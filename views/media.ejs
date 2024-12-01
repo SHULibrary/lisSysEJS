@@ -41,14 +41,20 @@
     <div id="book-container">
         <img id="media-page-cover" src="<%= book.image %>" alt="Book Cover" />
         <ul id="media-page-list">
+      
           <li id="media-buttons">
-            
             <button>
               reserve
             </button>
             <button>
-              favourite
+              edit
             </button>
+            <i
+              id="media-wishlist"
+              class="bi bi-star-fill"
+              data-id="<%= book.id %>"
+              style="font-size: x-large; vertical-align: -4px; color: <%= book.wishlisted ? 'gold' : 'black' %>"
+            ></i>
           </li>
           <li class="media-items">
             <h1 id="book-title"><%= book.name %></h1>
@@ -65,6 +71,23 @@
         </ul>
     </div>
 </body>
+<script>
+  document.querySelectorAll("#media-wishlist").forEach((element) => {
+
+    element.addEventListener("click", async () => {
+      const request = await fetch("/wishlist", {
+        method: "POST",
+        body: JSON.stringify({
+          mediaId: element.dataset.id,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const json = await request.json();
+      element.style["color"] = json.success ? "gold" : "black";
+    });
+  });
+</script>
 </html>
-
-

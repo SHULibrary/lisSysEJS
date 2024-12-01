@@ -191,12 +191,26 @@ async function createUser(name, email, username, password, dob, phone) {
       throw error;
     }
 }
-async function getBook(id) {
+async function getBook(id, userID) {
   const query =
-    "SELECT * FROM media WHERE id = ?";
+  `SELECT 
+  media.*, 
+  CASE 
+      WHEN wishlist.media_id IS NOT NULL THEN 1
+      ELSE 0
+  END AS wishlisted
+FROM 
+  media
+LEFT JOIN 
+  wishlist 
+ON 
+  media.id = wishlist.media_id 
+  AND wishlist.user_id = ?
+WHERE 
+  media.id = ?`;
     try {
       return new Promise((resolve, reject) => {
-        conn.query(query, [id], function (error, results, fields) {
+        conn.query(query, [userID, id], function (error, results, fields) {
           if (error) {
             reject(error);
           } else {
