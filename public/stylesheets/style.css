@@ -181,8 +181,9 @@ background-color: #fff;
 padding: 20px;
 border-radius: 8px;
 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-max-width: 400px;
+max-width: fit-content;
 text-align: center;
+display: flex;
 }
 
 #book-title {
@@ -217,27 +218,6 @@ padding: 0;
 font-size: 14px;
 color: #444;
 margin-bottom: 5px;
-}
-
-button {
-background-color: #007bff;
-color: #fff;
-border: none;
-padding: 10px 15px;
-border-radius: 5px;
-cursor: pointer;
-}
-
-button:hover {
-background-color: #0056b3;
-}
-
-textarea {
-font-size: 16px;
-padding: 10px;
-border: 1px solid #ccc;
-border-radius: 5px;
-resize: vertical;
 }
 
 @media (min-width: 640px) {
