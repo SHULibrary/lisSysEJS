@@ -210,4 +210,8 @@ async function getBook(id) {
     }
 }
 
+async function editMedia(name, descption, mediaID) {
+
+}
+
 module.exports = { getItems, getBooks, getList, ListMedia, authUser, createUser, getBook };

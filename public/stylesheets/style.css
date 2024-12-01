@@ -84,6 +84,10 @@ a:active {
   border-radius: 25px 0 0 25px;
 }
 
+.search-button {
+  display: none;
+}
+
 .search-button i {
   font-size: 16px;
 }

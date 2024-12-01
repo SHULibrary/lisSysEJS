@@ -44,7 +44,12 @@
                 <div class="book-wishlist" data-id="<%= book.id %>">
                   <i class="bi bi-star-fill" style="color: black"></i>
                 </div>
-                <img src="<%= book.image %>" alt="The Psychology Of Money" />
+                <a href="/media?id=<%= book.id %>">
+                  <img
+                    src="<%= book.image %>"
+                    alt="The Psychology Of Money"
+                  />
+                </a>
               </div>
               <h3><%= book.name %></h3>
               <p><%= book.author %></p>
