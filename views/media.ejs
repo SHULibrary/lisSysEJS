@@ -39,12 +39,29 @@
 </head>
 <body>
     <div id="book-container">
-        <h1 id="book-title"><%= book.name %></h1>
-        <h3 id="book-author">Author: <%= book.author %></h3>
-        <img id="book-cover" src="<%= book.image %>" alt="Book Cover" />
-        <p id="book-description"></p>
-        <ul id="book-details">
-            <%= book.description %>
+        <img id="media-page-cover" src="<%= book.image %>" alt="Book Cover" />
+        <ul id="media-page-list">
+          <li id="media-buttons">
+            
+            <button>
+              reserve
+            </button>
+            <button>
+              favourite
+            </button>
+          </li>
+          <li class="media-items">
+            <h1 id="book-title"><%= book.name %></h1>
+          </li>
+          <li class="media-items">
+            <h3 id="book-author">Author: <%= book.author %></h3>
+          </li>
+          <li class="media-items">
+            <p id="book-description"></p>
+            <ul id="book-details">
+              <%= book.description %>
+            </ul>
+          </li>
         </ul>
     </div>
 </body>
