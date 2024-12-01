@@ -210,8 +210,26 @@ async function getBook(id) {
     }
 }
 
-async function editMedia(name, descption, mediaID) {
-
+async function editMedia(name,description,author,mediaID) {
+  const query =
+    `UPDATE 'media' SET 'name' = ?, 
+    'desciption' = ?, 
+    'author' = ? 
+    WHERE 'media'.'id' = ?`;
+    try {
+      return new Promise((resolve, reject) => {
+        conn.query(query, [name,description,author,mediaID], function (error, results, fields) {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(results);
+          }
+        })
+      });
+    } catch (error) {
+      console.error("Error fetching :" + table, error.message);
+      throw error;
+    }
 }
 
-module.exports = { getItems, getBooks, getList, ListMedia, authUser, createUser, getBook };
+module.exports = { getItems, getBooks, getList, ListMedia, authUser, createUser, getBook, editMedia };
