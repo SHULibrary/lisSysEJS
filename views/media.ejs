@@ -41,7 +41,6 @@
     <div id="book-container">
         <img id="media-page-cover" src="<%= book.image %>" alt="Book Cover" />
         <ul id="media-page-list">
-      
           <li id="media-buttons">
             <button>
               reserve
@@ -53,7 +52,7 @@
               id="media-wishlist"
               class="bi bi-star-fill"
               data-id="<%= book.id %>"
-              style="font-size: x-large; vertical-align: -4px; color: <%= book.wishlisted ? 'gold' : 'black' %>"
+              style="cursor: pointer; font-size: x-large; vertical-align: -4px; color: <%= book.wishlisted ? 'gold' : 'black' %>"
             ></i>
           </li>
           <li class="media-items">
@@ -89,5 +88,9 @@
       element.style["color"] = json.success ? "gold" : "black";
     });
   });
+
+  function selectImage(){
+    
+  }
 </script>
 </html>
