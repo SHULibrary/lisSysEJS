@@ -48,7 +48,7 @@
             <button>
               reserve
             </button>
-            <button>
+            <button onclick="toggleEditable()">
               edit
             </button>
             <i
@@ -58,8 +58,8 @@
               style="cursor: pointer; font-size: x-large; vertical-align: -4px; color: <%= book.wishlisted ? 'gold' : 'black' %>"
             ></i>
           </li>
-          <li class="media-items" contenteditable="false">
-            <h1 id="book-title"><%= book.name %></h1>
+          <li class="media-items">
+            <h1 id="book-title" contenteditable="false"><%= book.name %></h1>
           </li>
           <li class="media-items" contenteditable="false">
             <h3 id="book-author">Author: <%= book.author %></h3>
@@ -74,10 +74,6 @@
     </div>
 </body>
 <script>
-  var bookImage = document.getElementById("media-page-cover");
-  if (bookImage.scr == "") bookImage.scr = "/images/books/placeholder.png";
-
-
   document.querySelectorAll("#media-wishlist").forEach((element) => {
 
     element.addEventListener("click", async () => {
@@ -97,7 +93,21 @@
     });
   });
 
-  
+  function toggleEditable() {
+    var title = document.getElementById("book-title");
+    var author = document.getElementById("book-author");
+    var toggle = title.contentEditable;
+    var outlineToggle = ((toggle == "true") ? "none" : "auto");
+    if(toggle == "false") toggle = "true";
+    else toggle = "false";
+    
+    title.contentEditable = toggle;
+    author.contentEditable = toggle;
+    title.style.outline = outlineToggle;
+    author.style.outline = outlineToggle;
+    
+    //add every other
+  }
 
 </script>
 </html>
