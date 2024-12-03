@@ -7,8 +7,8 @@ var router = express.Router();
 router.get('/', async function(req, res, next) {
     const { id } = req.query;
     var book = await getBook(id, 3);
+    if (book.image == "") book.image = "images/books/placeholder.png";
     if (book.length > 0) {
-      //console.log(book.image);
       res.render('media', { book: book[0] });
     }
   });

@@ -43,6 +43,9 @@
         <ul id="media-page-list">
           <li id="media-buttons">
             <button>
+              confirm
+            </button>
+            <button>
               reserve
             </button>
             <button>
@@ -55,15 +58,15 @@
               style="cursor: pointer; font-size: x-large; vertical-align: -4px; color: <%= book.wishlisted ? 'gold' : 'black' %>"
             ></i>
           </li>
-          <li class="media-items">
+          <li class="media-items" contenteditable="false">
             <h1 id="book-title"><%= book.name %></h1>
           </li>
-          <li class="media-items">
+          <li class="media-items" contenteditable="false">
             <h3 id="book-author">Author: <%= book.author %></h3>
           </li>
           <li class="media-items">
             <p id="book-description"></p>
-            <ul id="book-details">
+            <ul id="book-details" contenteditable="false">
               <%= book.description %>
             </ul>
           </li>
@@ -71,9 +74,14 @@
     </div>
 </body>
 <script>
+  var bookImage = document.getElementById("media-page-cover");
+  if (bookImage.scr == "") bookImage.scr = "/images/books/placeholder.png";
+
+
   document.querySelectorAll("#media-wishlist").forEach((element) => {
 
     element.addEventListener("click", async () => {
+
       const request = await fetch("/wishlist", {
         method: "POST",
         body: JSON.stringify({
@@ -89,8 +97,7 @@
     });
   });
 
-  function selectImage(){
-    
-  }
+  
+
 </script>
 </html>

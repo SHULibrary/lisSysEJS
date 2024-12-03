@@ -245,6 +245,18 @@ margin-bottom: 5px;
   padding-right: 5%;
 }
 
+#book-title {
+  font-size: 500%;
+}
+
+#book-author {
+  font-size: 200%;
+}
+
+#book-details {
+  font-size: 150%;
+}
+
 button {
 background-color: #007bff;
 color: #fff;
