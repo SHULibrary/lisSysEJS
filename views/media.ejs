@@ -48,7 +48,7 @@
             <button id="reserve-button" onclick="ReserveBook()">
               Reserve
             </button>
-            <button onclick="toggleEditable()">
+            <button id="edit-button" onclick="toggleEditable()">
               Edit
             </button>
             <i
@@ -102,6 +102,7 @@
   });
 
   function toggleEditable() {
+    var edButton = document.getElementById("edit-button");
     var title = document.getElementById("book-title");
     var author = document.getElementById("book-author");
     var description = document.getElementById("book-description");
@@ -120,9 +121,11 @@
     var dButton = document.getElementById("delete-button");
     var cButton = document.getElementById("cancel-button");
     if (sButton.hasAttribute("hidden")) {
+      edButton.setAttribute("disabled", "disabled");
       sButton.removeAttribute("hidden");
       dButton.removeAttribute("hidden");
       cButton.removeAttribute("hidden");
+
     }
     else {
       sButton.setAttribute("hidden", "hidden");
