@@ -59,13 +59,16 @@
             ></i>
           </li>
           <li class="media-items">
-            <h1 id="book-title" contenteditable="false"><%= book.name %></h1>
+            <h1 id="book-title" contenteditable="false" ><%= book.name %></h1>
           </li>
           <li class="media-items" contenteditable="false">
             <h2 id="book-author">Author: <%= book.author %></h2>
           </li>
           <li class="media-items" style="font-size: 180%;">
-            <h4><%= book.numberAvail %> available | <%= book.numberOf %> total</h4>
+            <h4 class="makeLine"><%= book.numberAvail %></h4>
+            <h4 class="makeLine"> available | </h4>
+            <h4 class="makeLine"><%= book.numberOf %></h4>
+            <h4 class="makeLine"> total</h4>
           </li>
           <li class="media-items">
             <button id="minus-button" class="bi bi-dash-lg" style="background-color: #03045e;" hidden></button>
@@ -76,7 +79,6 @@
           </li>
           <li class="media-items" style="float: right;">
             <button id="delete-button" hidden>Delete Book</button>
-            <button id="cancel-button" hidden>Cancel</button>
             <button id="save-button" hidden>Update</button>
           </li>
         </ul>
@@ -84,6 +86,10 @@
     
 </body>
 <script>
+  var titleCont = "";
+  var authorCont = "";
+  var descCont = "";
+
   document.querySelectorAll("#media-wishlist").forEach((element) => {
     element.addEventListener("click", async () => {
       const request = await fetch("/wishlist", {
@@ -105,6 +111,7 @@
     var title = document.getElementById("book-title");
     var author = document.getElementById("book-author");
     var description = document.getElementById("book-description");
+
     var toggle = title.contentEditable;
     var outlineToggle = ((toggle == "true") ? "none" : "auto");
     if(toggle == "false") toggle = "true";
@@ -118,56 +125,66 @@
     description.style.outline = outlineToggle;
     var sButton = document.getElementById("save-button");
     var dButton = document.getElementById("delete-button");
-    var cButton = document.getElementById("cancel-button");
     var mButton = document.getElementById("minus-button");
     var pButton = document.getElementById("plus-button");
     if (sButton.hasAttribute("hidden")) {
-      edButton.setAttribute("disabled", "disabled");
+      edButton.textContent = "Cancel";
+      edButton.style.backgroundColor = "orange";
       sButton.removeAttribute("hidden");
       dButton.removeAttribute("hidden");
-      cButton.removeAttribute("hidden");
       mButton.removeAttribute("hidden");
       pButton.removeAttribute("hidden");
+
+      titleCont = title.textContent;
+      authorCont = author.textContent;
+      descCont = description.textContent;
+
     }
     else {
+      title.textContent = titleCont;
+      author.textContent = authorCont;
+      description.textContent = descCont;
+
+      edButton.textContent = "Edit";
+      edButton.style.backgroundColor = "";
+
       sButton.setAttribute("hidden", "hidden");
       dButton.setAttribute("hidden", "hidden");
-      cButton.setAttribute("hidden", "hidden");
       mButton.setAttribute("hidden", "hidden");
       pButton.setAttribute("hidden", "hidden");
     }
-    
+  }
     //add every other
-  }
-  const express = require("express");
-const app = express();
-app.use(express.json()); // Parse JSON bodies
+//   }
+//   const express = require("express");
+// const app = express();
+// app.use(express.json()); // Parse JSON bodies
 
-// Example in-memory database (replace with actual database)
-const books = [
-  { id: 1, name: "Book 1", author: "Author 1", description: "Description 1" },
-  { id: 2, name: "Book 2", author: "Author 2", description: "Description 2" },
-];
+// // Example in-memory database (replace with actual database)
+// const books = [
+//   { id: 1, name: "Book 1", author: "Author 1", description: "Description 1" },
+//   { id: 2, name: "Book 2", author: "Author 2", description: "Description 2" },
+// ];
 
-app.post("/update-book", (req, res) => {
-  const { id, name, author, description } = req.body;
+// app.post("/update-book", (req, res) => {
+//   const { id, name, author, description } = req.body;
 
-  // Update the book in the database
-  const book = books.find((b) => b.id === parseInt(id));
-  if (book) {
-    book.name = name;
-    book.author = author;
-    book.description = description;
-    res.json({ success: true });
-  } else {
-    res.json({ success: false, message: "Book not found" });
-  }
-});
+//   // Update the book in the database
+//   const book = books.find((b) => b.id === parseInt(id));
+//   if (book) {
+//     book.name = name;
+//     book.author = author;
+//     book.description = description;
+//     res.json({ success: true });
+//   } else {
+//     res.json({ success: false, message: "Book not found" });
+//   }
+// });
 
 // Start server
-app.listen(3000, () => {
-  console.log("Server is running on http://localhost:3000");
-      });
+// app.listen(3000, () => {
+//   console.log("Server is running on http://localhost:3000");
+//       });
 
   function ReserveBook() {
     var resButton = document.getElementById("reserve-button");

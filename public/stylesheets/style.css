@@ -181,6 +181,12 @@ a:active {
   text-align: left;
 }
 
+.makeLine {
+  width: 25%;
+    display:inline;
+    box-sizing: border-box;
+}
+
 #book-container {
 background-color: #fff;
 padding: 20px;
