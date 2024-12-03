@@ -270,6 +270,11 @@ button:hover {
 background-color: #0056b3;
 }
 
+div h4 {
+  text-align: left;
+  font-size: 180%;
+}
+
 textarea {
 font-size: 16px;
 padding: 10px;
