@@ -62,16 +62,19 @@
             <h1 id="book-title" contenteditable="false"><%= book.name %></h1>
           </li>
           <li class="media-items" contenteditable="false">
-            <h3 id="book-author">Author: <%= book.author %></h3>
+            <h2 id="book-author">Author: <%= book.author %></h2>
+          </li>
+          <li class="media-items" contenteditable="false">
+            <h3 id="book-description"><%= book.description %></h3>
+            </ul>
           </li>
           <li class="media-items">
-            <p id="book-description"></p>
-            <ul id="book-details" contenteditable="false">
-              <%= book.description %>
-            </ul>
+            <button id="delete-button" hidden>Delete</button>
+            <button id="save-button" hidden>Save</button>
           </li>
         </ul>
     </div>
+    
 </body>
 <script>
   document.querySelectorAll("#media-wishlist").forEach((element) => {
@@ -96,6 +99,7 @@
   function toggleEditable() {
     var title = document.getElementById("book-title");
     var author = document.getElementById("book-author");
+    var description = document.getElementById("book-description");
     var toggle = title.contentEditable;
     var outlineToggle = ((toggle == "true") ? "none" : "auto");
     if(toggle == "false") toggle = "true";
@@ -103,11 +107,52 @@
     
     title.contentEditable = toggle;
     author.contentEditable = toggle;
+    description.contentEditable = toggle;
     title.style.outline = outlineToggle;
     author.style.outline = outlineToggle;
+    description.style.outline = outlineToggle;
+    var sButton = document.getElementById("save-button");
+    var dButton = document.getElementById("delete-button");
+    if (sButton.hasAttribute("hidden")) {
+      sButton.removeAttribute("hidden");
+      dButton.removeAttribute("hidden");
+    }
+    else {
+      sButton.setAttribute("hidden", "hidden");
+      dButton.setAttribute("hidden", "hidden");
+    }
     
     //add every other
   }
+  const express = require("express");
+const app = express();
+app.use(express.json()); // Parse JSON bodies
+
+// Example in-memory database (replace with actual database)
+const books = [
+  { id: 1, name: "Book 1", author: "Author 1", description: "Description 1" },
+  { id: 2, name: "Book 2", author: "Author 2", description: "Description 2" },
+];
+
+app.post("/update-book", (req, res) => {
+  const { id, name, author, description } = req.body;
+
+  // Update the book in the database
+  const book = books.find((b) => b.id === parseInt(id));
+  if (book) {
+    book.name = name;
+    book.author = author;
+    book.description = description;
+    res.json({ success: true });
+  } else {
+    res.json({ success: false, message: "Book not found" });
+  }
+});
+
+// Start server
+app.listen(3000, () => {
+  console.log("Server is running on http://localhost:3000");
+      });
 
 </script>
 </html>
