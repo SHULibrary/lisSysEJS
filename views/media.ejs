@@ -69,7 +69,8 @@
           </li>
           <li class="media-items" style="float: right;">
             <button id="delete-button" hidden>Delete Book</button>
-            <button id="save-button" hidden>Save</button>
+            <button id="cancel-button" hidden>Cancel</button>
+            <button id="save-button" hidden>Update</button>
           </li>
         </ul>
     </div>
@@ -112,13 +113,16 @@
     description.style.outline = outlineToggle;
     var sButton = document.getElementById("save-button");
     var dButton = document.getElementById("delete-button");
+    var cButton = document.getElementById("cancel-button");
     if (sButton.hasAttribute("hidden")) {
       sButton.removeAttribute("hidden");
       dButton.removeAttribute("hidden");
+      cButton.removeAttribute("hidden");
     }
     else {
       sButton.setAttribute("hidden", "hidden");
       dButton.setAttribute("hidden", "hidden");
+      cButton.setAttribute("hidden", "hidden");
     }
     
     //add every other
