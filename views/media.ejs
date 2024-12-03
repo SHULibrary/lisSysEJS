@@ -40,16 +40,16 @@
 <body>
     <div id="book-container">
         <img id="media-page-cover" src="<%= book.image %>" alt="Book Cover" />
-        <ul id="media-page-list">
+        <ul id="media-page-list" >
           <li id="media-buttons">
             <button>
               confirm
             </button>
-            <button>
-              reserve
+            <button id="reserve-button" onclick="ReserveBook()">
+              Reserve
             </button>
             <button onclick="toggleEditable()">
-              edit
+              Edit
             </button>
             <i
               id="media-wishlist"
@@ -67,6 +67,14 @@
           <li class="media-items" contenteditable="false">
             <h3 id="book-description"><%= book.description %></h3>
           </li>
+          <li>
+            <h4><%= book.numberAvail %> available | <%= book.numberOf %> total</h4>
+          </li>
+          <li class="media-items">
+            <button class="bi bi-dash-lg" style=""></button>
+            <button class="bi bi-plus-lg"></button>
+          </li>
+          
           <li class="media-items" style="float: right;">
             <button id="delete-button" hidden>Delete Book</button>
             <button id="cancel-button" hidden>Cancel</button>
@@ -78,9 +86,7 @@
 </body>
 <script>
   document.querySelectorAll("#media-wishlist").forEach((element) => {
-
     element.addEventListener("click", async () => {
-
       const request = await fetch("/wishlist", {
         method: "POST",
         body: JSON.stringify({
@@ -90,7 +96,6 @@
           "Content-Type": "application/json",
         },
       });
-
       const json = await request.json();
       element.style["color"] = json.success ? "gold" : "black";
     });
@@ -157,5 +162,35 @@ app.listen(3000, () => {
   console.log("Server is running on http://localhost:3000");
       });
 
+  function ReserveBook() {
+    var resButton = document.getElementById("reserve-button");
+    console.log(resButton.style.backgroundColor);
+    if (resButton.textContent.trim() == "Reserve") {
+      resButton.textContent = "Reserved";
+      resButton.style.backgroundColor = "green";
+    }
+    else {
+      resButton.textContent = "Reserve";
+      resButton.style.backgroundColor = "";
+    }
+
+    //   element.addEventListener("click", async () => {
+    //     const request = await fetch("/media", {
+    //       method: "POST",
+    //       body: JSON.stringify({
+    //         mediaId: element.dataset.id,
+    //       }),
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //     });
+        
+    //     const json = await request.json();
+    //     if (!json.success) {
+    //       element.parentElement.parentElement.remove();
+    //     }
+    //   });
+    // });
+  }
 </script>
 </html>
