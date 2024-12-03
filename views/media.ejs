@@ -64,17 +64,16 @@
           <li class="media-items" contenteditable="false">
             <h2 id="book-author">Author: <%= book.author %></h2>
           </li>
-          <li class="media-items" contenteditable="false">
-            <h3 id="book-description"><%= book.description %></h3>
-          </li>
-          <li>
+          <li class="media-items" style="font-size: 180%;">
             <h4><%= book.numberAvail %> available | <%= book.numberOf %> total</h4>
           </li>
           <li class="media-items">
-            <button class="bi bi-dash-lg" style="background-color: #03045e;"></button>
-            <button class="bi bi-plus-lg" style="background-color: #03045e;"></button>
+            <button id="minus-button" class="bi bi-dash-lg" style="background-color: #03045e;" hidden></button>
+            <button id="plus-button" class="bi bi-plus-lg" style="background-color: #03045e;" hidden></button>
           </li>
-          
+          <li class="media-items" contenteditable="false">
+            <h3 id="book-description"><%= book.description %></h3>
+          </li>
           <li class="media-items" style="float: right;">
             <button id="delete-button" hidden>Delete Book</button>
             <button id="cancel-button" hidden>Cancel</button>
@@ -120,17 +119,22 @@
     var sButton = document.getElementById("save-button");
     var dButton = document.getElementById("delete-button");
     var cButton = document.getElementById("cancel-button");
+    var mButton = document.getElementById("minus-button");
+    var pButton = document.getElementById("plus-button");
     if (sButton.hasAttribute("hidden")) {
       edButton.setAttribute("disabled", "disabled");
       sButton.removeAttribute("hidden");
       dButton.removeAttribute("hidden");
       cButton.removeAttribute("hidden");
-
+      mButton.removeAttribute("hidden");
+      pButton.removeAttribute("hidden");
     }
     else {
       sButton.setAttribute("hidden", "hidden");
       dButton.setAttribute("hidden", "hidden");
       cButton.setAttribute("hidden", "hidden");
+      mButton.setAttribute("hidden", "hidden");
+      pButton.setAttribute("hidden", "hidden");
     }
     
     //add every other
