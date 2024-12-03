@@ -270,11 +270,37 @@ button:hover {
 background-color: #0056b3;
 }
 
-div h4 {
-  text-align: left;
-  font-size: 180%;
-}
+  button {
+    padding: 10px 20px; /* Adds space inside the button */
+    font-size: 16px; /* Adjusts text size */
+    font-weight: bold; /* Makes text bold */
+    border: none; /* Removes default border */
+    border-radius: 5px; /* Rounds the edges */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    transition: background-color 0.3s, transform 0.2s; /* Adds smooth effects */
+  }
 
+  /* Save button styling */
+  #save-button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+  }
+
+  #save-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarges on hover */
+  }
+
+  /* Delete button styling */
+  #delete-button {
+    background-color: #f44336; /* Red background */
+    color: white; /* White text */
+  }
+
+  #delete-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+    transform: scale(1.05); /* Slightly enlarges on hover */
+  }
 textarea {
 font-size: 16px;
 padding: 10px;
