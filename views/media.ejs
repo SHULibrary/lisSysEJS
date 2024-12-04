@@ -75,7 +75,7 @@
             <h3 id="book-description"><%= book.description %></h3>
           </li>
           <li class="media-items" style="float: right;">
-            <button id="delete-button" hidden>Delete Book</button>
+            <button id="delete-button" onclick="deleteBook()" hidden>Delete Book</button>
             <button id="save-button" hidden>Update</button>
           </li>
         </ul>
@@ -158,7 +158,24 @@
       pButton.setAttribute("hidden", "hidden");
     }
   }
-    //add every other
+
+  async function deleteBook() {
+    if (confirm("Are you sure you want to delete <%= book.name %>") == true) {
+      const request = await fetch("/search", {
+        method: "POST",
+        body: JSON.stringify({
+          mediaId: <%= book.id %>,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const json = await request.json();
+      window.location.href = "/";
+    }
+  }
+
+
 //   const express = require("express");
 // const app = express();
 // app.use(express.json()); // Parse JSON bodies
@@ -188,29 +205,6 @@
 // app.listen(3000, () => {
 //   console.log("Server is running on http://localhost:3000");
 //       });
-
-
-    // document.querySelectorAll("#reserve-button").forEach((element) => {
-    //   const star = element.querySelector("i");
-    //   star.style["color"] = "red";
-
-    //   element.addEventListener("click", async () => {
-    //     const request = await fetch("/reservations", {
-    //       method: "POST",
-    //       body: JSON.stringify({
-    //         mediaId: element.dataset.id,
-    //       }),
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //     });
-
-    //     const json = await request.json();
-    //     if (!json.success) {
-    //       element.parentElement.parentElement.remove();
-    //     }
-    //   });
-    // });
 
   async function ReserveBook() {
     var resButton = document.getElementById("reserve-button");
