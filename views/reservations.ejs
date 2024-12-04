@@ -42,7 +42,6 @@
     document.querySelectorAll(".book-wishlist").forEach((element) => {
       const star = element.querySelector("i");
       star.style["color"] = "red";
-
       element.addEventListener("click", async () => {
         const request = await fetch("/reservations", {
           method: "POST",

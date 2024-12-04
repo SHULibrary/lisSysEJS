@@ -144,8 +144,7 @@ async function isListed(list, userId, mediaId) {
 async function ListMedia(list, userId, mediaId) {
   let query = "INSERT INTO " + list + " (media_id, user_id) VALUES (?, ?)";
   let exists = await isListed(list, userId, mediaId);
-  console.log(exists);
-
+  
   if (exists.length > 0) {
     query = "DELETE FROM " + list + " WHERE media_id = ? AND user_id = ?";
   }
@@ -224,15 +223,17 @@ WHERE
     }
 }
 
-async function editMedia(name,description,author,mediaID) {
+async function editMedia(name,description,author,numAvail,numOf,mediaID) {
   const query =
     `UPDATE 'media' SET 'name' = ?, 
     'desciption' = ?, 
-    'author' = ? 
+    'author' = ?,
+    'numberAvail' = ?,
+    'numberOf' = ? 
     WHERE 'media'.'id' = ?`;
     try {
       return new Promise((resolve, reject) => {
-        conn.query(query, [name,description,author,mediaID], function (error, results, fields) {
+        conn.query(query, [name,description,author,numAvail,numOf,mediaID], function (error, results, fields) {
           if (error) {
             reject(error);
           } else {

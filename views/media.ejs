@@ -62,14 +62,14 @@
             <h2 id="book-author">Author: <%= book.author %></h2>
           </li>
           <li class="media-items" style="font-size: 180%;">
-            <h4 class="makeLine"><%= book.numberAvail %></h4>
+            <h4 id="numAvail" class="makeLine"><%= book.numberAvail %></h4>
             <h4 class="makeLine"> available | </h4>
-            <h4 class="makeLine"><%= book.numberOf %></h4>
+            <h4 id="numOf" class="makeLine"><%= book.numberOf %></h4>
             <h4 class="makeLine"> total</h4>
           </li>
           <li class="media-items">
-            <button id="minus-button" class="bi bi-dash-lg" style="background-color: #03045e;" onclick="minusBut()" hidden></button>
-            <button id="plus-button" class="bi bi-plus-lg" style="background-color: #03045e;" onclick="plusBut()" hidden></button>
+            <button id="minus-button" class="bi bi-dash-lg" style="background-color: #03045e;" onclick="addMinus('-')" hidden></button>
+            <button id="plus-button" class="bi bi-plus-lg" style="background-color: #03045e;" onclick="addMinus('+')" hidden></button>
           </li>
           <li class="media-items" contenteditable="false">
             <h3 id="book-description"><%= book.description %></h3>
@@ -86,6 +86,8 @@
   var titleCont = "";
   var authorCont = "";
   var descCont = "";
+  var availCont = "";
+  var ofCont = "";
 
   document.querySelectorAll("#media-wishlist").forEach((element) => {
     element.addEventListener("click", async () => {
@@ -108,6 +110,8 @@
     var title = document.getElementById("book-title");
     var author = document.getElementById("book-author");
     var description = document.getElementById("book-description");
+    var avail = document.getElementById("numAvail");
+    var of = document.getElementById("numOf");
 
     var toggle = title.contentEditable;
     var outlineToggle = ((toggle == "true") ? "none" : "auto");
@@ -135,11 +139,15 @@
       titleCont = title.textContent;
       authorCont = author.textContent;
       descCont = description.textContent;
+      availCont = avail.textContent;
+      ofCont = of.textContent;
     }
     else {
       title.textContent = titleCont;
       author.textContent = authorCont;
       description.textContent = descCont;
+      avail.textContent = availCont;
+      of.textContent = ofCont;
 
       edButton.textContent = "Edit";
       edButton.style.backgroundColor = "";
@@ -151,7 +159,6 @@
     }
   }
     //add every other
-//   }
 //   const express = require("express");
 // const app = express();
 // app.use(express.json()); // Parse JSON bodies
@@ -182,20 +189,13 @@
 //   console.log("Server is running on http://localhost:3000");
 //       });
 
-  function ReserveBook() {
-    var resButton = document.getElementById("reserve-button");
-    console.log(resButton.style.backgroundColor);
-    if (resButton.textContent.trim() == "Reserve") {
-      resButton.textContent = "Reserved";
-      resButton.style.backgroundColor = "green";
-    }
-    else {
-      resButton.textContent = "Reserve";
-      resButton.style.backgroundColor = "";
-    }
+
+    // document.querySelectorAll("#reserve-button").forEach((element) => {
+    //   const star = element.querySelector("i");
+    //   star.style["color"] = "red";
 
     //   element.addEventListener("click", async () => {
-    //     const request = await fetch("/media", {
+    //     const request = await fetch("/reservations", {
     //       method: "POST",
     //       body: JSON.stringify({
     //         mediaId: element.dataset.id,
@@ -204,7 +204,7 @@
     //         "Content-Type": "application/json",
     //       },
     //     });
-        
+
     //     const json = await request.json();
     //     if (!json.success) {
     //       element.parentElement.parentElement.remove();
@@ -212,13 +212,48 @@
     //   });
     // });
 
-    function minusBut() {
+  async function ReserveBook() {
+    var resButton = document.getElementById("reserve-button");
 
+    if (resButton.textContent.trim() == "Reserve") {
+      resButton.textContent = "Reserved";
+      resButton.style.backgroundColor = "green";
     }
-
-    function plusBut() {
-
+    else {
+      resButton.textContent = "Reserve";
+      resButton.style.backgroundColor = "";
+    }
+    const request = await fetch("/reservations", {
+      method: "POST",
+      body: JSON.stringify({
+        mediaId: <%= book.id %>,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+        
+    const json = await request.json();
+    if (!json.success) {
+      element.parentElement.parentElement.remove();
     }
   }
+
+  function addMinus(operator) {
+      var numAvail = document.getElementById("numAvail");
+      var numOf = document.getElementById("numOf");
+      if(operator == '+') {
+        numAvail.textContent = parseInt(numAvail.textContent) + 1;
+        numOf.textContent = parseInt(numOf.textContent) + 1;
+      }
+      else {
+        var value = parseInt(numOf.textContent);
+        if (value != 0) {
+          numOf.textContent = value - 1;
+          value = parseInt(numAvail.textContent)
+          if (value != 0) numAvail.textContent = value - 1;
+        }
+      }
+    }
 </script>
 </html>
