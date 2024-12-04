@@ -42,9 +42,6 @@
         <img id="media-page-cover" src="<%= book.image %>" alt="Book Cover" />
         <ul id="media-page-list" >
           <li id="media-buttons">
-            <button>
-              confirm
-            </button>
             <button id="reserve-button" onclick="ReserveBook()">
               Reserve
             </button>
@@ -71,8 +68,8 @@
             <h4 class="makeLine"> total</h4>
           </li>
           <li class="media-items">
-            <button id="minus-button" class="bi bi-dash-lg" style="background-color: #03045e;" hidden></button>
-            <button id="plus-button" class="bi bi-plus-lg" style="background-color: #03045e;" hidden></button>
+            <button id="minus-button" class="bi bi-dash-lg" style="background-color: #03045e;" onclick="minusBut()" hidden></button>
+            <button id="plus-button" class="bi bi-plus-lg" style="background-color: #03045e;" onclick="plusBut()" hidden></button>
           </li>
           <li class="media-items" contenteditable="false">
             <h3 id="book-description"><%= book.description %></h3>
@@ -138,7 +135,6 @@
       titleCont = title.textContent;
       authorCont = author.textContent;
       descCont = description.textContent;
-
     }
     else {
       title.textContent = titleCont;
@@ -215,6 +211,14 @@
     //     }
     //   });
     // });
+
+    function minusBut() {
+
+    }
+
+    function plusBut() {
+
+    }
   }
 </script>
 </html>
