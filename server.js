@@ -242,6 +242,28 @@ async function editMedia(name,description,author,numAvail,numOf,mediaID) {
     }
 }
 
+async function addMedia(name,description,author,numAvail,numOf) {
+  const query =
+    "INSERT INTO `media` SET `name` = ?, `description` = ?, `author` = ?, `numberAvail` = ?, `numberOf` = ?, `dateEntered` = ?";
+    
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString().split('T')[0];
+    try {
+      return new Promise((resolve, reject) => {
+        conn.query(query, [name,description,author,numAvail,numOf,formattedDate], function (error, results, fields) {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(results);
+          }
+        })
+      });
+    } catch (error) {
+      console.error("Error fetching :" + table, error.message);
+      throw error;
+    }
+}
+
 async function deleteMedia(mediaID) {
   const queries = [
     `DELETE FROM wishlist WHERE media_id = ?`, `DELETE FROM reservations WHERE media_id = ?`, `DELETE FROM checkedout WHERE media_id = ?`, `DELETE FROM media WHERE id = ?`
@@ -265,4 +287,4 @@ async function deleteMedia(mediaID) {
     
 }
 
-module.exports = { getItems, getBooks, getList, ListMedia, authUser, createUser, getBook, editMedia, deleteMedia };
+module.exports = { getItems, getBooks, getList, ListMedia, authUser, createUser, getBook, editMedia, deleteMedia, addMedia };
