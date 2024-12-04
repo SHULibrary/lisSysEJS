@@ -76,7 +76,7 @@
           </li>
           <li class="media-items" style="float: right;">
             <button id="delete-button" onclick="deleteBook()" hidden>Delete Book</button>
-            <button id="save-button" hidden>Update</button>
+            <button id="save-button" onclick="editMedia()" hidden>Update</button>
           </li>
         </ul>
     </div>
@@ -105,7 +105,7 @@
     });
   });
 
-  function toggleEditable() {
+  function toggleEditable(edits) {
     var edButton = document.getElementById("edit-button");
     var title = document.getElementById("book-title");
     var author = document.getElementById("book-author");
@@ -143,15 +143,17 @@
       ofCont = of.textContent;
     }
     else {
-      title.textContent = titleCont;
-      author.textContent = authorCont;
-      description.textContent = descCont;
-      avail.textContent = availCont;
-      of.textContent = ofCont;
+      if(edits != true) {
+        title.textContent = titleCont;
+        author.textContent = authorCont;
+        description.textContent = descCont;
+        avail.textContent = availCont;
+        of.textContent = ofCont;
+      }
+      
 
       edButton.textContent = "Edit";
       edButton.style.backgroundColor = "";
-
       sButton.setAttribute("hidden", "hidden");
       dButton.setAttribute("hidden", "hidden");
       mButton.setAttribute("hidden", "hidden");
@@ -174,6 +176,24 @@
       window.location.href = "/";
     }
   }
+
+  async function editMedia() {
+      const request = await fetch("/media", {
+      method: "POST",
+      body: JSON.stringify({
+        name: document.getElementById("book-title").textContent,
+        description: document.getElementById("book-description").textContent,
+        author: document.getElementById("book-author").textContent,
+        numAvail: document.getElementById("numAvail").textContent,
+        numOf: document.getElementById("numOf").textContent,
+        mediaID: <%= book.id %>,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      });
+      toggleEditable(true);
+    }
 
 
 //   const express = require("express");
