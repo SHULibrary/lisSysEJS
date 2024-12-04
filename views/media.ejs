@@ -184,8 +184,8 @@
         name: document.getElementById("book-title").textContent,
         description: document.getElementById("book-description").textContent,
         author: document.getElementById("book-author").textContent,
-        numAvail: document.getElementById("numAvail").textContent,
-        numOf: document.getElementById("numOf").textContent,
+        numAvail: parseInt(document.getElementById("numAvail").textContent),
+        numOf: parseInt(document.getElementById("numOf").textContent),
         mediaID: <%= book.id %>,
       }),
       headers: {

@@ -14,11 +14,9 @@ router.get('/', async function(req, res, next) {
 });
 
 router.post("/", async function (req, res, next) {
-  console.log("HELLO")
   const { name, description, author, numAvail, numOf, mediaID } = req.body;
   try {
     const success = await editMedia(name, description, author, numAvail, numOf, mediaID);
-    console.log(success);
     res.send({ success });
   } catch {
     res.send({ success: false });

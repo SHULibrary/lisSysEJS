@@ -225,12 +225,7 @@ WHERE
 
 async function editMedia(name,description,author,numAvail,numOf,mediaID) {
   const query =
-    `UPDATE 'media' SET 'name' = ?, 
-    'desciption' = ?, 
-    'author' = ?,
-    'numberAvail' = ?,
-    'numberOf' = ? 
-    WHERE 'media'.'id' = ?`;
+    "UPDATE `media` SET `name` = ?, `description` = ?, `author` = ?, `numberAvail` = ?, `numberOf` = ? WHERE `media`.`id` = ?";
     try {
       return new Promise((resolve, reject) => {
         conn.query(query, [name,description,author,numAvail,numOf,mediaID], function (error, results, fields) {
