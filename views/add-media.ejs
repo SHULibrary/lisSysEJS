@@ -102,10 +102,6 @@
               <label for="author-box">Author</label>
             </div>
             <div class="form-field">
-              <input type="number" id="numAvail-box" name="numAvail" placeholder=" " min="0" required>
-              <label for="numAvail-box">Number Available</label>
-            </div>
-            <div class="form-field">
               <input type="number" id="numOf-box" name="numOf" placeholder=" " min="1" required>
               <label for="numOf-box">Total Number</label>
             </div>
@@ -123,14 +119,10 @@
   const name = document.getElementById("name-box").value;
   const description = document.getElementById("description-box").value;
   const author = document.getElementById("author-box").value;
-  const numAvail = parseInt(document.getElementById("numAvail-box").value);
   const numOf = parseInt(document.getElementById("numOf-box").value);
+  const numAvail = numOf;
   
-  console.log(name)
-  console.log(description)
-  console.log(author)
-  console.log(numAvail)
-  console.log(numOf)
+  
   try {
     // Make POST request to /add-media
     const response = await fetch("/add-media", {
@@ -155,6 +147,7 @@
     } else {
       alert("Failed to add media. Please try again.");
     }
+    window.location.href = "/";
   } catch (error) {
     console.error("Error adding media:", error);
     alert("An error occurred. Please try again.");

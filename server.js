@@ -244,7 +244,7 @@ async function editMedia(name,description,author,numAvail,numOf,mediaID) {
 
 async function addMedia(name,description,author,numAvail,numOf) {
   const query =
-    "INSERT INTO `media` SET `name` = ?, `description` = ?, `author` = ?, `numberAvail` = ?, `numberOf` = ?, `dateEntered` = ?";
+    "INSERT INTO `media` SET `name` = ?, `description` = ?, `author` = ?, `numberAvail` = ?, `numberOf` = ?, `dateEntered` = ?, `image` = '/images/books/placeholder.png'";
     
     const currentDate = new Date();
     const formattedDate = currentDate.toISOString().split('T')[0];

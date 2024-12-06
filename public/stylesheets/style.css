@@ -115,6 +115,10 @@ a:active {
   cursor: pointer;
 }
 
+.book:hover {
+  text-decoration: underline;
+}
+
 .book img {
   border-radius: 10px;
   object-fit: cover;
@@ -340,11 +344,13 @@ resize: vertical;
   font-size: 14px;
   cursor: pointer;
   background-color: #03045e;
+  
   font-size: 24px;
 }
 
 .add-book-button:hover {
   background-color: #03045e;
+  text-decoration: underline;
 }
 
 @media (min-width: 640px) {
