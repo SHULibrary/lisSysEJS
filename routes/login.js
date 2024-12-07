@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 router.post("/", async function(req, res, next) {
   const { username, password} = req.body;
   const users = await authUser(username, password);
- 
+  const user = { ...users[0] };
 
   if (users.length > 0) {
     app.use(
@@ -21,19 +21,11 @@ router.post("/", async function(req, res, next) {
         secret: 'baloney and ch33se', 
         resave: false,
         saveUninitialized: true, 
+        cookie : { secure : false, maxAge : 3600000, loggedIn : false, user : user }
       })
     );
     app.use(express.json());
     
-    app.post('/set-session', (req, res) => {
-      req.session.user = users;
-      res.send({ sessionData: req.session.user });
-    });
-
-    app.get('/get-session', (req, res) => {
-      const userData = req.session.user;
-      console.log(userData);
-    });
 
     res.redirect(301, "/")
   } else {
