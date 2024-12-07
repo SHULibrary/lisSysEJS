@@ -5,6 +5,7 @@ const loginForm = document.getElementById('loginForm').addEventListener('submit'
     event.preventDefault();
     test();
     var users = await getItems("users");
+
     const username = document.getElementById('username-box').value.trim();
     const password = document.getElementById('password-box').value.trim();
     var currentUser = null;
@@ -22,6 +23,6 @@ const loginForm = document.getElementById('loginForm').addEventListener('submit'
     else {
         messageElement.textContent = 'Invalid username or password.';
         messageElement.style.color = 'red';
-        window.location.href = '/login';
+        //window.location.href = '/login';
       }
     });

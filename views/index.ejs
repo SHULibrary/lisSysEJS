@@ -31,7 +31,7 @@
   <body>
     <div class="header-title" style="display: flex; justify-content: space-between; align-content: center; padding: 0 20px;">
       <h1 class="header-title">SHU Library</h1>
-      <button class="add-book-button">
+      <button class="add-book-button" id="add-media-button">
         <a class="add-book-button" style="color: white;" href="/add-media">Add Media </a>
       </button>
     </div>
@@ -115,7 +115,12 @@
       </div>
     </div>
   </body>
-  <script>
+  <script>    
+    
+
+
+    if(false) document.getElementById("add-media-button").setAttribute("hidden", "hidden");
+
     document.querySelectorAll(".book-wishlist").forEach((element) => {
       const star = element.querySelector("i");
 

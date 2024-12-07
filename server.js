@@ -284,7 +284,6 @@ async function deleteMedia(mediaID) {
       throw error;
     }
   });
-    
 }
 
 module.exports = { getItems, getBooks, getList, ListMedia, authUser, createUser, getBook, editMedia, deleteMedia, addMedia };
