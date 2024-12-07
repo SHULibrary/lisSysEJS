@@ -1,4 +1,4 @@
-const { getItems, test } = require("../../server");
+const { getItems } = require("../../server");
 
 const loginForm = document.getElementById('loginForm').addEventListener('submit', async function (event) {
     // Get input values

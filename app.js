@@ -3,6 +3,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var session = require("express-session");
 
 var indexRouter = require("./routes/index");
 var indoxRouter = require("./routes/login");
@@ -25,6 +26,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(
+  session({
+    secret: 'baloney and ch33se', 
+    resave: false,
+    saveUninitialized: true, 
+    cookie : { secure : false }
+  })
+);
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
