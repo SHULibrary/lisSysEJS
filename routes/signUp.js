@@ -1,3 +1,4 @@
+import bcrypt from bcrypt
 var express = require('express');
 const { createUser } = require('../server');
 var router = express.Router();
