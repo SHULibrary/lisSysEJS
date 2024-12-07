@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -33,7 +34,7 @@ a:active {
 
 .container {
   display: flex;
-  height: 100%;
+  height: calc(100vh);
   align-items: stretch;
 }
 
@@ -187,52 +188,52 @@ a:active {
 
 .makeLine {
   width: 25%;
-    display:inline;
-    box-sizing: border-box;
+  display: inline;
+  box-sizing: border-box;
 }
 
 #book-container {
-background-color: #fff;
-padding: 20px;
-border-radius: 8px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-max-width: fit-content;
-text-align: center;
-display: flex;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: fit-content;
+  text-align: center;
+  display: flex;
 }
 
 #book-title {
-color: #333;
-font-size: 24px;
+  color: #333;
+  font-size: 24px;
 }
 
 #book-author {
-color: #555;
-font-size: 18px;
+  color: #555;
+  font-size: 18px;
 }
 
 #book-cover {
-width: 30%;
-height: auto;
-margin: 20px 0;
-border-radius: 8px;
+  width: 30%;
+  height: auto;
+  margin: 20px 0;
+  border-radius: 8px;
 }
 
 #book-description {
-font-size: 16px;
-color: #666;
-margin-bottom: 20px;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
 }
 
 #book-details {
-list-style: none;
-padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 #book-details li {
-font-size: 14px;
-color: #444;
-margin-bottom: 5px;
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 5px;
 }
 
 #media-page-cover {
@@ -247,7 +248,7 @@ margin-bottom: 5px;
 }
 
 #media-page-list {
-  list-style-type: none
+  list-style-type: none;
 }
 
 #media-buttons {
@@ -268,46 +269,46 @@ margin-bottom: 5px;
 }
 
 button {
-background-color: #007bff;
-color: #fff;
-border: none;
-padding: 10px 15px;
-border-radius: 5px;
-cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 button:hover {
-background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 button {
-padding: 10px 20px;
-font-size: 16px;
-font-weight: bold;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-transition: background-color 0.3s, transform 0.2s;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 #save-button {
-background-color: #4CAF50;
-color: white;
+  background-color: #4caf50;
+  color: white;
 }
 
 #save-button:hover {
-background-color: #45a049;
-transform: scale(1.05);
+  background-color: #45a049;
+  transform: scale(1.05);
 }
 
 #delete-button {
-background-color: #f44336;
-color: white;
+  background-color: #f44336;
+  color: white;
 }
 
 #delete-button:hover {
-background-color: #d32f2f;
-transform: scale(1.05);
+  background-color: #d32f2f;
+  transform: scale(1.05);
 }
 
 #cancel-button {
@@ -317,15 +318,27 @@ transform: scale(1.05);
 
 #cancel-button:hover {
   background-color: orange;
-transform: scale(1.05);
+  transform: scale(1.05);
 }
 
+input[type="text"],
+input[type="date"],
 textarea {
-font-size: 16px;
-padding: 10px;
-border: 1px solid #ccc;
-border-radius: 5px;
-resize: vertical;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  margin-top: 5px;
+}
+
+label {
+  color: #333;
+}
+
+.settings-form {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
 }
 
 .header-container {
@@ -344,7 +357,7 @@ resize: vertical;
   font-size: 14px;
   cursor: pointer;
   background-color: #03045e;
-  
+
   font-size: 24px;
 }
 

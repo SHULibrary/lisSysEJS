@@ -15,8 +15,8 @@ router.post("/", async function (req, res, next) {
   try {
     const success = await ListMedia("wishlist", USER_ID, mediaId);
     res.send({ success });
-  } catch(error) {
-    console.log(error)
+  } catch (error) {
+    console.log(error);
     res.send({ success: false });
   }
 });
