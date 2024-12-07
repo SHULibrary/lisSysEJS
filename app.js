@@ -12,6 +12,7 @@ var usersRouter = require("./routes/users");
 var searchRouter = require("./routes/search");
 var mediaRouter = require("./routes/media");
 var reservationsRouter = require("./routes/reservations");
+var accountRouter = require("./routes/account");
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use("/wishlist", wishlistRouter);
 app.use("/search", searchRouter);
 app.use("/media", mediaRouter);
 app.use("/reservations", reservationsRouter);
+app.use("/account", accountRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
