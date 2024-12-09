@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Account</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+  </head>
+
+  <body>
+    <%- include('./partials/header'); %>
+    <h1 class="header-title">Account</h1>
+
+    <div class="container">
+      <%- include('./partials/sidebar'); %>
+      <div class="main-content">
+        <div class="settings-form">
+          <div style="display: flex; gap: 15px">
+            <div style="flex: 1">
+              <label>First Name</label>
+              <input type="text" value="Aigars" />
+            </div>
+
+            <div style="flex: 1">
+              <label>Last Name</label>
+              <input type="text" value="Aldermanis" />
+            </div>
+          </div>
+
+          <div>
+            <label>Email</label>
+            <input type="text" value="aldermanis.aigars@gmail.com" />
+          </div>
+
+          <div>
+            <label>Phone Number</label>
+            <input type="text" value="Phone Number" />
+          </div>
+
+          <div>
+            <label>Address</label>
+            <textarea rows="5">Address</textarea>
+          </div>
+
+          <div>
+            <label>Date of Birth</label>
+            <input type="date" value="Date of Birth" />
+          </div>
+
+          <button>Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

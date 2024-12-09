@@ -115,12 +115,9 @@
       </div>
     </div>
   </body>
-  <script>    
+  <script>  
+    if("<%= user.role %>" == "c") document.getElementById("add-media-button").setAttribute("hidden", "hidden");
     
-
-
-    if(false) document.getElementById("add-media-button").setAttribute("hidden", "hidden");
-
     document.querySelectorAll(".book-wishlist").forEach((element) => {
       const star = element.querySelector("i");
 
@@ -136,7 +133,7 @@
         });
 
         const json = await request.json();
-        star.style["color"] = json.success ? "yellow" : "black";
+        star.style["color"] = json.success ? "gold" : "black";
       });
     });
   </script>

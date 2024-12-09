@@ -7,8 +7,8 @@ const salt = 10;
 
 /* GET sign in page. */
 
-router.get('/', function(req, res, next) {
-  res.render('signUp', { title: 'Express' });
+router.get("/", function (req, res, next) {
+  res.render("signUp", { title: "Express" });
 });
 
 router.post("/", async function(req, res, next) {
@@ -32,6 +32,6 @@ router.post("/", async function(req, res, next) {
   if (createUser(name, email, username, password, DOB, number)) {
     res.redirect(301, "/");
   }
-})
+});
 
 module.exports = router;

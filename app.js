@@ -3,6 +3,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var session = require("express-session");
 
 var indexRouter = require("./routes/index");
 var indoxRouter = require("./routes/login");
@@ -13,6 +14,7 @@ var searchRouter = require("./routes/search");
 var mediaRouter = require("./routes/media");
 var addBookRouter = require("./routes/add-media");
 var reservationsRouter = require("./routes/reservations");
+var accountRouter = require("./routes/account");
 
 var app = express();
 
@@ -26,6 +28,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(
+  session({
+    secret: 'baloney and ch33se', 
+    resave: false,
+    saveUninitialized: true, 
+    cookie : { secure : false }
+  })
+);
+
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/login", indoxRouter);
@@ -35,6 +46,7 @@ app.use("/search", searchRouter);
 app.use("/media", mediaRouter);
 app.use("/add-media", addBookRouter);
 app.use("/reservations", reservationsRouter);
+app.use("/account", accountRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
