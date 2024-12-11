@@ -1,33 +1,32 @@
-# Configuration for the Jekyll template "Just the Docs"
-parent: Decisions
+parent: security
 nav_order: 100
-title: ADR Template
+title: Password Protection
 
-# date: {YYYY-MM-DD when the decision was last updated}
+# date: {2024-10-15}
 # decision-makers: {Qistina, Hazel, Aslyne}
-# consulted: {Any lecturers involved}
+# consulted: {Rizwana}
 ---
-<!-- we need to disable MD025, because we use the different heading "ADR Template" in the homepage (see above) than it is foreseen in the template -->
-<!-- markdownlint-disable-next-line MD025 -->
-# {short title, representative of solved problem and found solution}
+
+# {Decision to use hashing}
 
 ## Context and Problem Statement
 
-{Describe the context and problem statement, e.g., in free form using two to three sentences or in the form of an illustrative story. You may want to articulate the problem in form of a question and add links to collaboration boards or issue management systems.}
+{To comply with data protection laws, we need to ensure our clients data is protected to a suitable level}
 
 <!-- This is an optional element. Feel free to remove. -->
 ## Decision Drivers
 
-* {decision driver 1, e.g., a force, facing concern, …}
-* {decision driver 2, e.g., a force, facing concern, …}
-* … <!-- numbers of drivers can vary -->
+* {Abiding by laws}
+* {Suitability}
+* {Experience}
+* {Complexity}
 
 ## Considered Options
 
-* {title of option 1}
-* {title of option 2}
-* {title of option 3}
-* … <!-- numbers of options can vary -->
+* {Hashing + Password Rules}
+* {Hashing}
+* {Password Rules}
+* {None}
 
 ## Decision Outcome
 

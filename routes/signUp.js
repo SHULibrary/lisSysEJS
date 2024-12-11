@@ -6,12 +6,7 @@ const salt = 10;
 /* GET sign in page. */
 
 router.get("/", function (req, res, next) {
-  if (!req.session.user || req.session.user == null){
-    res.render('login', { title: 'Express' })
-  }
-  else {
-    res.render("signUp", { title: "Express" });
-  }
+  res.render("signUp", { title: "Express" });
   
 });
 

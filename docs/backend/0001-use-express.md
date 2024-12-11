@@ -1,4 +1,3 @@
-# Configuration for the Jekyll template "Just the Docs"
 parent: backend
 nav_order: 100
 title: Use Express

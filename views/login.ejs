@@ -55,7 +55,7 @@
     .login-box input[type="submit"]:hover {
       background-color: #0056b3;
     }
-    .login-box input[type="button"] {
+    #reg-button {
       width: 50%;
       padding: 10px;
       background-color: #A52A2A;
@@ -63,6 +63,7 @@
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      
     }
     .login-box input[type="button"]:hover { 
       background-color: #A52A2A;
@@ -79,11 +80,13 @@
       <input type="submit" id="ubmit-button" value="Sign in">
       <p>Or</p>
       <p>New Registration</p>
-      <input type="button" value="Sign up for new account">
+      <button id="reg-button">
+        <a style="color: white;" href="/signUp">Sign up for new account</a>
+      </button>
     </form>
   </div>
 </body>
-<script>
+<script 
+  src="/javascripts/script.js">
 </script>
-<script src="/javascripts/script.js"></script>
 </html>
