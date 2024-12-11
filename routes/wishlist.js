@@ -2,18 +2,23 @@ var express = require("express");
 const { getList, ListMedia } = require("../server");
 var router = express.Router();
 
-const USER_ID = 3; /* TODO: fetch authorized user for the id */
-
 /* GET sign in page. */
 router.get("/", async function (req, res, next) {
-  const books = await getList(USER_ID, "wishlist");
-  res.render("wishlist", { books });
+  if (!req.session.user || req.session.user == null){
+    res.render('login', { title: 'Express' })
+  }
+  else {
+    const books = await getList(req.session.user.id, "wishlist");
+    console.log(books);
+    res.render("wishlist", { books });
+  }
+  
 });
 
 router.post("/", async function (req, res, next) {
   const { mediaId } = req.body;
   try {
-    const success = await ListMedia("wishlist", USER_ID, mediaId);
+    const success = await ListMedia("wishlist", req.session.user.id, mediaId);
     res.send({ success });
   } catch (error) {
     console.log(error);

@@ -5,7 +5,13 @@ var router = express.Router();
 /* GET sign in page. */
 
 router.get("/", function (req, res, next) {
-  res.render("signUp", { title: "Express" });
+  if (!req.session.user || req.session.user == null){
+    res.render('login', { title: 'Express' })
+  }
+  else {
+    res.render("signUp", { title: "Express" });
+  }
+  
 });
 
 router.post("/", async function (req, res, next) {

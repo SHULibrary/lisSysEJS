@@ -2,9 +2,13 @@ var express = require("express");
 const { addMedia } = require("../server");
 var router = express.Router();
 
-
 router.get('/', async function(req, res, next) {
-    res.render('add-media');
+    if (!req.session.user || req.session.user == null){
+      res.render('login', { title: 'Express' })
+    }
+    else {
+      res.render('add-media');
+    }
 });
 
 router.post("/", async function (req, res, next) {

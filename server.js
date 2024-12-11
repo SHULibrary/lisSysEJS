@@ -106,10 +106,10 @@ async function getBooks(userId, search) {
 
 async function getList(userId, list) {
   const query =
-    "SELECT * FROM " + list + " INNER JOIN media ON " + list + ".media_id = media.id";
+    "SELECT * FROM " + list + " WHERE user_id = " + userId;
     try {
       return new Promise((resolve, reject) => {
-        conn.query(query, [userId], function (error, results, fields) {
+        conn.query(query, function (error, results, fields) {
           if (error) {
             reject(error);
           } else {

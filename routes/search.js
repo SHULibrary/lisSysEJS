@@ -2,16 +2,17 @@ var express = require("express");
 const { getBooks, deleteMedia } = require("../server");
 var router = express.Router();
 
-const USER_ID = 3;
-
 router.get("/", async function (req, res, next) {
-  const { query } = req.query;
-  const books = await getBooks(USER_ID, query);
-
-  res.render("search", {
-    books,
-  });
-
+  if (!req.session.user || req.session.user == null){
+    res.render('login', { title: 'Express' })
+  }
+  else {
+    const { query } = req.query;
+    const books = await getBooks(req.session.user.id, query);
+    res.render("search", {
+      books,
+    });
+  }
   
 });
 
