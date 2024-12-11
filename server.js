@@ -174,7 +174,7 @@ async function authUser(username, password) {
 
 async function createUser(name, email, username, password, dob, phone) {
   const query =
-    "INSERT INTO users (name, email, username, password, DOB, phone) VALUES (?, ?, ?, ?, ?, ?)";
+    "INSERT INTO users (name, email, username, password, DOB, phone, role) VALUES (?, ?, ?, ?, ?, ?, c)";
     try {
       return new Promise((resolve, reject) => {
         conn.query(query, [name, email, username, password, dob, phone], function (error, results, fields) {
