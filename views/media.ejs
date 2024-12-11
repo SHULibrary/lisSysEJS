@@ -39,7 +39,7 @@
 </head>
 <body>
     <div id="book-container">
-        <img id="media-page-cover" src="<%= book.image %>" alt="Book Cover" />
+        <img style="object-fit: contain;" id="media-page-cover" src="<%= book.image %>" alt="Book Cover">
         <ul id="media-page-list" >
           <li id="media-buttons">
             <button id="reserve-button" onclick="ReserveBook()">
@@ -59,7 +59,8 @@
             <h1 id="book-title" contenteditable="false" ><%= book.name %></h1>
           </li>
           <li class="media-items" contenteditable="false">
-            <h2 id="book-author">Author: <%= book.author %></h2>
+            <h2 class="makeLine" style="color: #555; font-size: 27px;">Author: </h2>
+            <h2 class="makeLine" id="book-author"><%= book.author %></h2>
           </li>
           <li class="media-items" style="font-size: 180%;">
             <h4 id="numAvail" class="makeLine"><%= book.numberAvail %></h4>
@@ -83,6 +84,8 @@
     
 </body>
 <script>
+  if("<%= user.role %>" == "c") document.getElementById("edit-button").setAttribute("hidden", "hidden");
+
   var titleCont = "";
   var authorCont = "";
   var descCont = "";
