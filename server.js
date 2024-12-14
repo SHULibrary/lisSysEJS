@@ -1,42 +1,7 @@
 var express = require("express");
-var sqlite3 = require("sqlite3").verbose();
 const mysql = require('mysql');
 
 var app = express();
-
-var checkedOutData;
-var mediaData;
-var reservedData;
-var usersData;
-var wishlistData;
-
-
-
-// conn.query('SELECT * FROM `checkedout`', function (error, results, fields) {
-//   checkedOutData = results;  
-// });
-
-// conn.query('SELECT * FROM `media`', function (error, results, fields) {
-//   mediaData = results;
-// });
-
-// conn.query('SELECT * FROM `reservations`', function (error, results, fields) {
-//   reservedData = results;  
-// });
-
-// conn.query('SELECT * FROM `users`', function (error, results, fields) {
-//   usersData = results;  
-// });
-
-// conn.query('SELECT * FROM `wishlist`', function (error, results, fields) {
-//   wishlistData = results;  
-// });
-
-// console.log(checkedOutData);
-// console.log(mediaData);
-// console.log(reservedData);
-// console.log(usersData);
-// console.log(wishlistData);
 
 const conn = mysql.createConnection({
   host: 'localhost',
@@ -48,7 +13,7 @@ const conn = mysql.createConnection({
 
 conn.connect((err) =>{
   if(err) throw err;
-  console.log('Mysql Connected...');
+  //console.log('Mysql Connected...');
 });
 
 async function getItems(table) {
