@@ -1,8 +1,6 @@
 var express = require('express');
 const { createUser } = require('../server');
 var router = express.Router();
-import bcrypt from bcrypt
-import cookieParser from 'cookie-parser';
 const salt = 10;
 
 /* GET sign in page. */
