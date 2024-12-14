@@ -155,6 +155,7 @@ async function createUser(name, email, username, password, dob, phone) {
       throw error;
     }
 }
+
 async function getBook(id, userID) {
   const query =
   `SELECT 
