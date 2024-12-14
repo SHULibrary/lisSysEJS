@@ -34,7 +34,7 @@ a:active {
 
 .container {
   display: flex;
-  height: calc(100vh);
+  height: auto;
   align-items: stretch;
 }
 
