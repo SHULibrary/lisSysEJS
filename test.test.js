@@ -4,18 +4,18 @@ const mysql = require('mysql');
 const { resolve } = require("path");
 var app = express();
 
-const conn = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'libdb',
-  port: '3306'
-});
 
-conn.connect((err) =>{
-  if(err) throw err;
-  //console.log('Mysql Connected...');
-});
+// const conn = mysql.createConnection({
+//             host: 'localhost',
+//             user: 'root',
+//             password: '',
+//             database: 'libdb',
+//             port: '3306'
+//           });
+    
+//           conn.connect((err) =>{
+//             if(err) throw err;
+//           });
 
 // async function getList(userId, list) {
 //   const query =
