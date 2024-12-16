@@ -263,4 +263,24 @@ async function deleteMedia(mediaID) {
   });
 }
 
-module.exports = { getItems, getBooks, getList, ListMedia, authUser, createUser, getBook, editMedia, deleteMedia, addMedia };
+//FUNCTION CREATED FOR TESTING PURPOSES
+async function getSingle(id) {
+  const query =
+    "SELECT * FROM media WHERE id = ?";
+    try {
+      return new Promise((resolve, reject) => {
+        conn.query(query, [id], function (error, results, fields) {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(results);
+          }
+        })
+      });
+    } catch (error) {
+      console.error("Error fetching :" + table, error.message);
+      throw error;
+    }
+}
+
+module.exports = { getItems, getBooks, getList, ListMedia, authUser, createUser, getBook, editMedia, deleteMedia, addMedia, getSingle };
