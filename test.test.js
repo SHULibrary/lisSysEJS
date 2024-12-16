@@ -52,11 +52,10 @@ test('fetch media availabiliy', async () => {
     test('should return error if any field is missing', async () => {
       expect(await createUser('', 'email@email.com', 'Username', 'Password1', 'dd/mm/yyyy', 102012)).toEqual("All fields are required.")
       });
-  // test('create user function correctly', async () => {
-  //   var create = await createUser('Full Name', 'email@email.com', 'Username', 'Password1', '01/01/1000', 871387);
-  //   //CHANGE 'insertId' TO CURRENT NUMBER + 1 EVERY TIME THIS TEST IS RAN
-  //   expect(create).toEqual({"affectedRows": 1, "changedRows": 0, "fieldCount": 0, "insertId": 13, "message": "", "protocol41": true, "serverStatus": 2, "warningCount": 3});
-  // });
+      test('create user function correctly', async () => {
+        var create = await createUser('Full Name', 'email@email.com', 'Username', 'Password1', '01/01/1000', 871387);
+        expect(create["affectedRows"]).toEqual(1);
+      });
   //TEST ADD MEDIA
   test('should return error if any field is missing', async () => {
     expect(await addMedia('name', 'description', 'author', 'numAvail', 'numOf')).toEqual("All fields are required.")
