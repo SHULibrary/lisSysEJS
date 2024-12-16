@@ -112,7 +112,7 @@ test('fetch reservations unresolved', async () => {
     reservations[0]["dateEntered"] = '2024-11-16T00:00:00.000Z'
     expect(reservations[0]).toBe({"author": "Matt Ridley", "dateEntered": '2024-11-16T00:00:00.000Z', "description": "When government analyst Kate Halloran stumbles upon a classified file that wasn’t meant for her eyes, she’s pulled into a conspiracy that spans continents.", "id": 1, "image": "/images/books/how-innovation-works.jpg"});
 });
-
+//TEST SIGN UP
     test('should return error if any field is missing', async () => {
       expect(await createUser('', 'email@email.com', 'Username', 'Password1', 'dd/mm/yyyy', 102012)).toEqual("All fields are required.")
       });
@@ -121,3 +121,11 @@ test('fetch reservations unresolved', async () => {
   //   //CHANGE 'insertId' TO CURRENT NUMBER + 1 EVERY TIME THIS TEST IS RAN
   //   expect(create).toEqual({"affectedRows": 1, "changedRows": 0, "fieldCount": 0, "insertId": 13, "message": "", "protocol41": true, "serverStatus": 2, "warningCount": 3});
   // });
+  //TEST ADD MEDIA
+  test('should return error if any field is missing', async () => {
+    expect(await addMedia('name', 'description', 'author', 'numAvail', 'numOf')).toEqual("All fields are required.")
+    });
+// test('create user function correctly', async () => {
+//   var create = await createUser('Full Name', 'email@email.com', 'Username', 'Password1', '01/01/1000', 871387);
+//   expect(create).toEqual({"affectedRows": 1, "changedRows": 0, "fieldCount": 0, "insertId": 13, "message": "", "protocol41": true, "serverStatus": 2, "warningCount": 3});
+// });
