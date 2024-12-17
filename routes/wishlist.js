@@ -9,7 +9,6 @@ router.get("/", async function (req, res, next) {
   }
   else {
     const books = await getList(req.session.user.id, "wishlist");
-    console.log(books);
     res.render("wishlist", { books });
   }
   

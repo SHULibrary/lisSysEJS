@@ -10,7 +10,6 @@ router.get("/", async function (req, res, next) {
   }
   else {
     const books = await getList(req.session.user.id, "reservations");
-    console.log(books);
     res.render("reservations", { books });
   }
   

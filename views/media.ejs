@@ -55,7 +55,7 @@
               id="media-wishlist"
               class="bi bi-star-fill"
               data-id="<%= book.id %>"
-              style="cursor: pointer; font-size: x-large; vertical-align: -4px; color: <%= book.wishlisted ? 'gold' : 'black' %>"
+              style="cursor: pointer; font-size: x-large; vertical-align: -4px;"
             ></i>
           </li>
           <li class="media-items">
@@ -88,6 +88,23 @@
 </body>
 <script>
   if("<%= user.role %>" == "c") document.getElementById("edit-button").setAttribute("hidden", "hidden");
+
+  console.log(<%= book.checkedout %>);
+  console.log(<%= book.reserved %>);
+  console.log(<%= book.wishlisted %>);
+
+  if (<%= book.checkedout %>) {
+    document.getElementById("borrow-button").textContent = "Checked out";
+    document.getElementById("borrow-button").style.backgroundColor = "green";
+  }
+  if (<%= book.reserved %>) {
+    document.getElementById("reserve-button").textContent = "Reserved";
+    document.getElementById("reserve-button").style.backgroundColor = "green";
+  }
+  document.getElementById("media-wishlist").style.color = "black";
+  if (<%= book.wishlisted %>) {
+    document.getElementById("media-wishlist").style.color = "gold";
+  }
 
   var titleCont = "";
   var authorCont = "";
@@ -217,7 +234,7 @@
       borButton.textContent = "Borrow";
       borButton.style.backgroundColor = "";
     }
-    const request = await fetch("/users", {
+    const request = await fetch("/checkedout", {
       method: "POST",
       body: JSON.stringify({
         mediaId: <%= book.id %>,

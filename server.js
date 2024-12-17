@@ -168,25 +168,31 @@ async function createUser(name, email, username, password, dob, phone) {
 }
 
 async function getBook(id, userID) {
+  console.log("book:" + id);
+  console.log("user: " + userID);
   const query =
   `SELECT 
-  media.*, 
-  CASE 
-      WHEN wishlist.media_id IS NOT NULL THEN 1
-      ELSE 0
-  END AS wishlisted
-FROM 
-  media
-LEFT JOIN 
-  wishlist 
-ON 
-  media.id = wishlist.media_id 
-  AND wishlist.user_id = ?
-WHERE 
-  media.id = ?`;
+    media.*, 
+    CASE 
+        WHEN wishlist.media_id IS NOT NULL THEN 1
+        ELSE 0
+    END AS wishlisted,
+    CASE 
+        WHEN checkedout.media_id IS NOT NULL THEN 1
+        ELSE 0
+    END AS checkedout,
+    CASE 
+        WHEN reservations.media_id IS NOT NULL THEN 1
+        ELSE 0
+    END AS reserved
+  FROM media
+  LEFT JOIN wishlist ON media.id = wishlist.media_id AND wishlist.user_id = ?
+  LEFT JOIN reservations ON media.id = reservations.media_id AND reservations.user_id = ?
+  LEFT JOIN checkedout ON media.id = checkedout.media_id AND checkedout.user_id = ?
+  WHERE media.id = ?;`;
     try {
       return new Promise((resolve, reject) => {
-        conn.query(query, [userID, id], function (error, results, fields) {
+        conn.query(query, [userID, userID, userID, id], function (error, results, fields) {
           if (error) {
             reject(error);
           } else {

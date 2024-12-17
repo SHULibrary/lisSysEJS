@@ -20,9 +20,6 @@
           <% books.forEach((book) => { %>
           <div class="book">
             <div class="book-img">
-              <div class="book-wishlist" data-id="<%= book.id %>">
-                <i class="bi bi-dash-circle-fill" style="color: black"></i>
-              </div>
               <a href="/media?id=<%= book.id %>">
                 <img
                   src="<%= book.image %>"
@@ -38,26 +35,4 @@
       </div>
     </div>
   </body>
-  <script>
-    document.querySelectorAll(".book-wishlist").forEach((element) => {
-      const star = element.querySelector("i");
-      star.style["color"] = "red";
-      element.addEventListener("click", async () => {
-        const request = await fetch("/checkedout", {
-          method: "POST",
-          body: JSON.stringify({
-            mediaId: element.dataset.id,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        const json = await request.json();
-        if (!json.success) {
-          element.parentElement.parentElement.remove();
-        }
-      });
-    });
-  </script>
 </html>
