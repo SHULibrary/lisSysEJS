@@ -42,6 +42,9 @@
         <img style="object-fit: contain;" id="media-page-cover" src="<%= book.image %>" alt="Book Cover">
         <ul id="media-page-list" >
           <li id="media-buttons">
+            <button id="borrow-button" onclick="borrowBook()">
+              Borrow
+            </button>
             <button id="reserve-button" onclick="ReserveBook()">
               Reserve
             </button>
@@ -109,6 +112,8 @@
       element.style["color"] = json.success ? "gold" : "black";
     });
   });
+
+  
 
   function toggleEditable(edits) {
     var edButton = document.getElementById("edit-button");
@@ -198,54 +203,35 @@
       });
       toggleEditable(true);
     }
-    // async function addMedia() {
-    //   const request = await fetch("/media", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     name: document.getElementById("book-title").textContent,
-    //     description: document.getElementById("book-description").textContent,
-    //     author: document.getElementById("book-author").textContent,
-    //     numAvail: parseInt(document.getElementById("numAvail").textContent),
-    //     numOf: parseInt(document.getElementById("numOf").textContent),
-    //     mediaID: <%= book.id %>,
-    //   }),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   });
-    //   toggleEditable(true);
-    // }
 
+  async function borrowBook() {
+    var borButton = document.getElementById("borrow-button");
+    var resButton = document.getElementById("reserve-button");
 
-//   const express = require("express");
-// const app = express();
-// app.use(express.json()); // Parse JSON bodies
-
-// // Example in-memory database (replace with actual database)
-// const books = [
-//   { id: 1, name: "Book 1", author: "Author 1", description: "Description 1" },
-//   { id: 2, name: "Book 2", author: "Author 2", description: "Description 2" },
-// ];
-
-// app.post("/update-book", (req, res) => {
-//   const { id, name, author, description } = req.body;
-
-//   // Update the book in the database
-//   const book = books.find((b) => b.id === parseInt(id));
-//   if (book) {
-//     book.name = name;
-//     book.author = author;
-//     book.description = description;
-//     res.json({ success: true });
-//   } else {
-//     res.json({ success: false, message: "Book not found" });
-//   }
-// });
-
-// Start server
-// app.listen(3000, () => {
-//   console.log("Server is running on http://localhost:3000");
-//       });
+    if (borButton.textContent.trim() == "Borrow") {
+      borButton.textContent = "Checked out";
+      borButton.style.backgroundColor = "green";
+      if(resButton.textContent.trim() == "Reserved") ReserveBook();
+    }
+    else {
+      borButton.textContent = "Borrow";
+      borButton.style.backgroundColor = "";
+    }
+    const request = await fetch("/users", {
+      method: "POST",
+      body: JSON.stringify({
+        mediaId: <%= book.id %>,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+        
+    const json = await request.json();
+    if (!json.success) {
+      element.parentElement.parentElement.remove();
+    }
+  }
 
   async function ReserveBook() {
     var resButton = document.getElementById("reserve-button");

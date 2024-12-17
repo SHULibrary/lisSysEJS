@@ -15,6 +15,7 @@ var mediaRouter = require("./routes/media");
 var addBookRouter = require("./routes/add-media");
 var reservationsRouter = require("./routes/reservations");
 var accountRouter = require("./routes/account");
+var checkedoutRouter = require("./routes/checkedout")
 
 var app = express();
 
@@ -47,6 +48,7 @@ app.use("/media", mediaRouter);
 app.use("/add-media", addBookRouter);
 app.use("/reservations", reservationsRouter);
 app.use("/account", accountRouter);
+app.use("/checkedout", checkedoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
