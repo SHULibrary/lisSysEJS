@@ -2,16 +2,13 @@ var express = require("express");
 const { getList, ListMedia } = require("../server");
 var router = express.Router();
 
-/* GET sign in page. */
 router.get("/", async function (req, res, next) {
-  if (!req.session.user || req.session.user == null){
-    res.render('login', { title: 'Express' })
-  }
-  else {
+  if (!req.session.user || req.session.user == null) {
+    res.render("login", { title: "Express" });
+  } else {
     const books = await getList(req.session.user.id, "wishlist");
     res.render("wishlist", { books });
   }
-  
 });
 
 router.post("/", async function (req, res, next) {

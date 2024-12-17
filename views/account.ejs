@@ -20,33 +20,33 @@
           <div style="display: flex; gap: 15px">
             <div style="flex: 1">
               <label>First Name</label>
-              <input type="text" value="Qistina" />
+              <input type="text" value="<%= user.name.split(' ')[0] %>" />
             </div>
 
             <div style="flex: 1">
               <label>Last Name</label>
-              <input type="text" value="Roslan" />
+              <input type="text" value="<%= user.name.split(' ')[1] %>" />
             </div>
           </div>
 
           <div>
             <label>Email</label>
-            <input type="text" value="Qistina.roslan@gmail.com" />
+            <input type="text" value="<%= user.email %>" />
           </div>
 
           <div>
             <label>Phone Number</label>
-            <input type="text" value="Phone Number" />
+            <input type="text" value="<%= user.phone %>" />
           </div>
 
           <div>
             <label>Address</label>
-            <textarea rows="5">Address</textarea>
+            <textarea rows="5"><%= user.address %></textarea>
           </div>
 
           <div>
             <label>Date of Birth</label>
-            <input type="date" value="Date of Birth" />
+            <input type="date" value="<%= user.DOB.split('T')[0] %>" />
           </div>
 
           <button>Save Changes</button>

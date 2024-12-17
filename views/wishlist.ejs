@@ -24,10 +24,7 @@
                 <i class="bi bi-star-fill" style="color: black"></i>
               </div>
               <a href="/media?id=<%= book.id %>">
-                <img
-                  src="<%= book.image %>"
-                  alt="The Psychology Of Money"
-                />
+                <img src="<%= book.image %>" alt="The Psychology Of Money" />
               </a>
             </div>
             <h3><%= book.name %></h3>
@@ -53,7 +50,7 @@
             "Content-Type": "application/json",
           },
         });
-        
+
         const json = await request.json();
         if (!json.success) {
           element.parentElement.parentElement.remove();
