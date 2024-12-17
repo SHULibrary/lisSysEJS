@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post("/", async function(req, res, next) {
-  const { username, password} = req.body;
+  const { username, password } = req.body;
   const users = await authUser(username, password);
   const user = { ...users[0] };
 

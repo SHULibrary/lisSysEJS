@@ -139,7 +139,14 @@ async function authUser(username, password) {
 
 async function createUser(name, email, username, password, dob, phone) {
   const query =
-    "INSERT INTO users (name, email, username, password, DOB, phone, role) VALUES (?, ?, ?, ?, ?, ?, c)";
+    "INSERT INTO users (name, email, username, password, DOB, phone) VALUES (?, ?, ?, ?, ?, ?)";
+  var empty = false;
+  var list = [name, email, username, password, dob, phone]
+  list.forEach(i => {
+    if(i.length == 0) empty = true;
+  });
+  if (empty != true)
+  {
     try {
       return new Promise((resolve, reject) => {
         conn.query(query, [name, email, username, password, dob, phone], function (error, results, fields) {
@@ -154,6 +161,10 @@ async function createUser(name, email, username, password, dob, phone) {
       console.error("Error fetching :" + table, error.message);
       throw error;
     }
+  }
+  else {
+    return("All fields are required.");
+  }
 }
 
 async function getBook(id, userID) {
@@ -252,4 +263,24 @@ async function deleteMedia(mediaID) {
   });
 }
 
-module.exports = { getItems, getBooks, getList, ListMedia, authUser, createUser, getBook, editMedia, deleteMedia, addMedia };
+//FUNCTION CREATED FOR TESTING PURPOSES
+async function getSingle(id) {
+  const query =
+    "SELECT * FROM media WHERE id = ?";
+    try {
+      return new Promise((resolve, reject) => {
+        conn.query(query, [id], function (error, results, fields) {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(results);
+          }
+        })
+      });
+    } catch (error) {
+      console.error("Error fetching :" + table, error.message);
+      throw error;
+    }
+}
+
+module.exports = { getItems, getBooks, getList, ListMedia, authUser, createUser, getBook, editMedia, deleteMedia, addMedia, getSingle };
