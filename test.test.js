@@ -1,4 +1,10 @@
-const { getList, ListMedia, getBooks } = require("./server");
+const {
+  getList,
+  ListMedia,
+  getBooks,
+  addMedia,
+  createUser,
+} = require("./server");
 const mysql = require("mysql");
 
 const USER_ID = 3;
