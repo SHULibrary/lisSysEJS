@@ -88,6 +88,10 @@
 </body>
 <script>
   if("<%= user.role %>" == "c") document.getElementById("edit-button").setAttribute("hidden", "hidden");
+  if("<%= book.numberAvail %>" == "0") {
+    document.getElementById("borrow-button").setAttribute("disabled", "disabled");
+    document.getElementById("borrow-button").
+  }
 
   console.log(<%= book.checkedout %>);
   console.log(<%= book.reserved %>);
